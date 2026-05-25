@@ -1,0 +1,34 @@
+apiCommons: finops/0.1
+provider:
+  id: bridge-mls
+  name: Bridge
+  url: https://bridgedataoutput.com
+description: |
+  Bridge MLS data feeds are not metered per API call and do not surface FOCUS-style cost-usage
+  records. Costs are governed by per-dataset MLS data licenses negotiated outside the API. The
+  observable usage signals available to consumers are page counts, modification timestamps for
+  delta sync, and webhook delivery counts.
+billingModel:
+  type: license
+  meter: dataset
+  frequency: agreement
+  currency: USD
+costAllocation:
+- dimension: dataset
+  description: Each MLS dataset code maps to a separate license and cost line.
+- dimension: feature
+  description: Add-ons such as off-market data, photo CDN tiers, webhooks, and ZG Data parcels are billed as additional license features.
+focusAlignment:
+  service: Bridge MLS Data
+  serviceCategory: Real Estate Data
+  chargeCategory: Usage
+  chargeFrequency: Recurring
+  unitMetric: dataset-month
+notes:
+- No public usage/cost API; cost reporting is handled through Bridge account management.
+- Consumers should track per-dataset license terms and refresh cadence to forecast cost.
+- Webhook usage does not change cost but reduces poll volume.
+sources:
+- https://www.bridgeinteractive.com/developers/bridge-api/
+- https://bridgedataoutput.com/docs/platform/
+updated: '2026-05-25'

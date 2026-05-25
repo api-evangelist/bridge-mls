@@ -1,0 +1,39 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.bridgedataoutput.com/api/v2/OData/test/Property?access_token=6baca547742c6f96a6ff71b138424f21&$filter=StandardStatus%20eq%20'Active'%20and%20ListPrice%20gt%20500000&$select=ListingKey,ListingId,ListPrice,UnparsedAddress,BedroomsTotal,BathroomsTotalInteger,Media&$expand=Media($top=3)&$top=2&$orderby=ModificationTimestamp%20desc"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "@odata.context": "https://api.bridgedataoutput.com/api/v2/OData/test/$metadata#Property",
+      "@odata.nextLink": "https://api.bridgedataoutput.com/api/v2/OData/test/Property?$skip=2&...",
+      "value": [
+        {
+          "ListingKey": "TEST123",
+          "ListingId": "MLS-0001",
+          "ListPrice": 749000,
+          "UnparsedAddress": "123 Main St, Austin, TX 78701",
+          "BedroomsTotal": 3,
+          "BathroomsTotalInteger": 2,
+          "Media": [
+            {
+              "MediaKey": "M1",
+              "MediaURL": "https://cdn.bridgedataoutput.com/p/TEST123/1.jpg",
+              "Order": 1
+            }
+          ]
+        },
+        {
+          "ListingKey": "TEST124",
+          "ListingId": "MLS-0002",
+          "ListPrice": 612500,
+          "UnparsedAddress": "456 Elm Ave, Austin, TX 78704",
+          "BedroomsTotal": 4,
+          "BathroomsTotalInteger": 3,
+          "Media": []
+        }
+      ]
+    }
+  }
+}

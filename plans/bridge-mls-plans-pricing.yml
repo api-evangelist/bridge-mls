@@ -1,0 +1,68 @@
+apiCommons: plans/0.1
+provider:
+  id: bridge-mls
+  name: Bridge (Bridge Interactive / Bridge Data Output)
+  url: https://www.bridgeinteractive.com
+description: |
+  Bridge does not publish a public self-serve price list for MLS data feeds. Access to the Bridge
+  Web API and RESO Web API is governed by per-dataset licensing agreements between Bridge and the
+  Multiple Listing Service (MLS) or data owner. End-user developers (brokerages, IDX vendors,
+  AVMs, listing portals) request access through Bridge and the MLS approves the data license; once
+  approved Bridge issues per-dataset access tokens. Pricing is not metered per API call — it is set
+  by the underlying MLS data license. A free public test dataset (`test`) is available for
+  evaluation.
+plans:
+- id: test-dataset
+  name: Public Test Dataset
+  description: Free read-only access to a fixed sample dataset for evaluation and developer onboarding.
+  price: Free
+  entries:
+  - geo: Global
+    label: Test dataset access
+    price: 0
+    unit: dataset
+    metric: dataset
+    timeFrame: month
+  elements:
+  - name: Read-only access to the `test` dataset
+  - name: Full RESO Web API and Bridge Web API surface
+  - name: API Explorer access
+- id: mls-licensed
+  name: MLS-Licensed Data Feed
+  description: Production read access to live MLS listing data. Requires data license approval from the originating MLS.
+  price: Contact
+  entries:
+  - geo: US-CA
+    label: Per-dataset license
+    price: Contact
+    unit: dataset
+    metric: dataset
+    timeFrame: agreement
+  elements:
+  - name: RESO Platinum-certified Web API access
+  - name: Bridge Web API and RESO Web API on the same dataset
+  - name: Optional webhook delivery
+  - name: Media CDN access
+  - name: Data refreshed every 10 minutes or less per MLS
+  - name: RESO Data Dictionary normalized fields
+- id: zg-data
+  name: Zillow Group Data License
+  description: Licensed access to parcels, assessments, and Zillow Group Econ Data (ZHVI, ZORI) via the Bridge OData surface.
+  price: Contact
+  entries:
+  - geo: US
+    label: ZG Data license
+    price: Contact
+    unit: dataset
+    metric: dataset
+    timeFrame: agreement
+  elements:
+  - name: Parcels and assessments
+  - name: Zillow Home Value Index (ZHVI), Zillow Observed Rent Index (ZORI)
+  - name: Same OData query surface as MLS data
+sources:
+- https://www.bridgeinteractive.com/developers/bridge-api/
+- https://www.bridgeinteractive.com/developers/data-access/
+- https://bridgedataoutput.com/docs/platform/Introduction/Signing-up-with-Bridge-API
+- https://bridgedataoutput.com/zgdata
+updated: '2026-05-25'

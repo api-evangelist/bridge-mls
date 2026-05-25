@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bridge-mls/main/json-schema/bridge-member-schema.json",
+  "title": "Bridge RESO Member",
+  "description": "RESO-normalized Member (agent) record served by the Bridge RESO Web API.",
+  "type": "object",
+  "required": ["MemberKey"],
+  "properties": {
+    "MemberKey": { "type": "string" },
+    "MemberMlsId": { "type": "string" },
+    "MemberFirstName": { "type": "string" },
+    "MemberMiddleName": { "type": "string" },
+    "MemberLastName": { "type": "string" },
+    "MemberFullName": { "type": "string" },
+    "MemberEmail": { "type": "string", "format": "email" },
+    "MemberOfficePhone": { "type": "string" },
+    "MemberMobilePhone": { "type": "string" },
+    "MemberDirectPhone": { "type": "string" },
+    "MemberType": { "type": "string", "enum": ["Agent", "Office Manager", "Broker", "Appraiser", "Assistant", "Office"] },
+    "MemberStatus": { "type": "string", "enum": ["Active", "Inactive"] },
+    "MemberStateLicense": { "type": "string" },
+    "MemberPreferredPhone": { "type": "string" },
+    "OfficeKey": { "type": "string" },
+    "OfficeMlsId": { "type": "string" },
+    "OfficeName": { "type": "string" },
+    "MemberAddress1": { "type": "string" },
+    "MemberCity": { "type": "string" },
+    "MemberStateOrProvince": { "type": "string" },
+    "MemberPostalCode": { "type": "string" },
+    "MemberCountry": { "type": "string" },
+    "ModificationTimestamp": { "type": "string", "format": "date-time" }
+  }
+}

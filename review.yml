@@ -1,0 +1,59 @@
+aid: bridge-mls
+name: Bridge
+reviewed: '2026-05-25'
+reviewer:
+  fn: Kin Lane
+  url: https://apievangelist.com
+tier: 1
+tier-reason: |
+  Tier-1 — Bridge runs a RESO Platinum-certified, OData 4.0 Web API in production at
+  api.bridgedataoutput.com with both v2 and v3 endpoints, a parallel native Bridge Web API,
+  a webhooks API with PKI-signed payloads, public documentation, a free test dataset, an API
+  Explorer sandbox, and real artifacts (OpenAPI, JSON Schema, JSON-LD, capabilities) generated
+  against the actual surface. Five RESO resources (Property, Member, Office, OpenHouse, Media)
+  plus metadata discovery via OData service document and $metadata CSDL.
+summary: |
+  Bridge (Bridge Interactive / Bridge Data Output) is a Zillow Group company that operates the
+  Bridge Platform — a RESO Platinum-certified MLS data distribution service used by MLSs and
+  brokerages across the US and Canada. Four APIs are profiled: the RESO Web API (OData 4.0), the
+  native Bridge Web API, the Webhooks API, and the Zillow Group Data API (parcels, assessments,
+  ZHVI/ZORI econ). Data is normalized to the RESO Data Dictionary; Bridge is preparing datasets
+  for RESO Data Dictionary 2.0 certification.
+strengths:
+- RESO Platinum certification and OData 4.0 compliance
+- Real production endpoints at api.bridgedataoutput.com/api/v2 and /api/v3
+- Free public test dataset and API Explorer
+- Webhooks for real-time change events with PKI-signed payloads
+- Same resources available via both OData and flat-JSON shapes
+- Media CDN with high-resolution photos
+- ZG Data (parcels, assessments, Zillow econ feeds) on the same surface
+weaknesses:
+- Documentation is a SPA, hard to scrape — no published OpenAPI spec
+- No public self-serve pricing — all production access is license-gated through the MLS
+- No public usage/cost API; FOCUS-style cost reporting handled out-of-band
+- Bridge interprets OData $top as page size, not total — a non-standard behavior consumers must learn
+ownership:
+  parent: Zillow Group
+  acquired: '2016'
+  note: User-supplied "Move Inc / News Corp" appears incorrect — Bridge Interactive Group was acquired by Zillow Group in 2016 and remains a Zillow Group company per Bridge's own about page and the original acquisition press release.
+artifacts:
+  apis: 4
+  openapi: 3
+  capabilities: 8
+  jsonSchema: 2
+  jsonLd: 1
+  plans: 1
+  rateLimits: 1
+  finops: 1
+  examples: 1
+sources:
+- https://www.bridgeinteractive.com
+- https://bridgedataoutput.com
+- https://bridgedataoutput.com/docs/platform/
+- https://bridgedataoutput.com/docs/platform/API/reso-web-api
+- https://bridgedataoutput.com/docs/platform/API/bridge
+- https://www.bridgeinteractive.com/developers/bridge-api/
+- https://www.bridgeinteractive.com/developers/data-access/
+- https://www.bridgeinteractive.com/developers/zillow-group-data/
+- https://www.reso.org/blog/web-api-examples/mls-service-providers/bridge-api/
+- https://updates.bridgedataoutput.com/

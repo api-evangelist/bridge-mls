@@ -1,0 +1,39 @@
+apiCommons: rate-limits/0.1
+provider:
+  id: bridge-mls
+  name: Bridge
+  url: https://bridgedataoutput.com
+description: |
+  Bridge does not publish a global numeric rate-limit table; limits are enforced per dataset/license
+  and via OData page-size controls. The most important runtime constraints documented by Bridge are
+  the OData page size (`$top` / `maxpagesize` header) and the `$expand` cap.
+limits:
+- id: page-size
+  name: Page Size
+  scope: per-request
+  description: Maximum records returned per page. Bridge interprets OData `$top` as page size, not total. Override via `maxpagesize` header.
+  default: 10
+  max: 200
+- id: expand-default
+  name: Default $expand Limit
+  scope: per-request
+  description: '`$expand` returns a default maximum of 10 results per expanded navigation property unless `$top` is specified inside the `$expand` clause.'
+  default: 10
+- id: webhook-retry
+  name: Webhook Retry Window
+  scope: per-webhook
+  description: Failed webhook deliveries retry with exponential backoff for up to two days.
+  window: 2d
+- id: media-cdn
+  name: Media CDN
+  scope: per-request
+  description: Media URLs are served from a CDN; rate limits follow the CDN tier negotiated per license.
+notes:
+- Per-dataset request quotas are set by the underlying MLS license and are not published.
+- HTTPS is required — Bridge does not respond to unencrypted traffic.
+- Tokens are scoped per dataset; sharing tokens across datasets is not supported.
+sources:
+- https://bridgedataoutput.com/docs/platform/API/reso-web-api
+- https://bridgedataoutput.com/docs/platform/API/bridge
+- https://bridgedataoutput.com/docs/platform/API/webhooks
+updated: '2026-05-25'

@@ -1,0 +1,90 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bridge RESO Web API — Property
+  description: Query the RESO Property resource via Bridge's OData endpoint. Lead operations cover listing search, single-record lookup, and metadata.
+  tags:
+  - Bridge
+  - RESO
+  - Property
+  - MLS
+  - OData
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    BRIDGE_ACCESS_TOKEN: BRIDGE_ACCESS_TOKEN
+    BRIDGE_DATASET: BRIDGE_DATASET
+capability:
+  consumes:
+  - type: http
+    namespace: bridge-property
+    baseUri: https://api.bridgedataoutput.com/api/v2/OData
+    description: Bridge RESO Web API Property resource.
+    resources:
+    - name: property
+      path: /{dataset}/Property
+      operations:
+      - name: listProperties
+        method: GET
+        description: Query Property records with OData query options.
+        outputRawFormat: json
+        inputParameters:
+        - { name: dataset, in: path, type: string, required: true }
+        - { name: $filter, in: query, type: string }
+        - { name: $select, in: query, type: string }
+        - { name: $expand, in: query, type: string }
+        - { name: $orderby, in: query, type: string }
+        - { name: $top, in: query, type: integer }
+        - { name: $skip, in: query, type: integer }
+        - { name: unselect, in: query, type: string }
+        outputParameters:
+        - { name: result, type: object, value: $. }
+    - name: property-by-key
+      path: /{dataset}/Property('{listingKey}')
+      operations:
+      - name: getProperty
+        method: GET
+        description: Retrieve a single Property by ListingKey.
+        outputRawFormat: json
+        inputParameters:
+        - { name: dataset, in: path, type: string, required: true }
+        - { name: listingKey, in: path, type: string, required: true }
+        - { name: $select, in: query, type: string }
+        - { name: $expand, in: query, type: string }
+        outputParameters:
+        - { name: result, type: object, value: $. }
+    authentication:
+      type: apikey
+      key: access_token
+      value: '{{env.BRIDGE_ACCESS_TOKEN}}'
+      placement: query
+  exposes:
+  - type: mcp
+    namespace: bridge-property-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bridge Property queries.
+    tools:
+    - name: bridge-list-properties
+      description: Search MLS listings via Bridge RESO Web API.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: bridge-property.listProperties
+      with:
+        dataset: tools.dataset
+        $filter: tools.filter
+        $select: tools.select
+        $expand: tools.expand
+        $orderby: tools.orderby
+        $top: tools.top
+      outputParameters:
+      - { type: object, mapping: $. }
+    - name: bridge-get-property
+      description: Get a single MLS listing by ListingKey.
+      hints: { readOnly: true, destructive: false, idempotent: true }
+      call: bridge-property-by-key.getProperty
+      with:
+        dataset: tools.dataset
+        listingKey: tools.listingKey
+      outputParameters:
+      - { type: object, mapping: $. }

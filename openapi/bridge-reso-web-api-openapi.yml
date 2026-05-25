@@ -1,0 +1,399 @@
+openapi: 3.1.0
+info:
+  title: Bridge RESO Web API
+  version: '2.0'
+  description: |
+    RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).
+    Data is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets
+    OData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec
+    with an `unselect` parameter that returns all fields except those listed.
+
+    Each request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` —
+    either as a query parameter or via the `Authorization: Bearer` header.
+  contact:
+    name: Bridge Interactive Support
+    email: support@bridgeinteractive.com
+    url: https://www.bridgeinteractive.com/contact/
+  license:
+    name: Bridge Data Output Terms of Use
+    url: https://www.bridgeinteractive.com/terms-of-use/
+servers:
+- url: https://api.bridgedataoutput.com/api/v2/OData
+  description: Production v2 OData endpoint
+- url: https://api.bridgedataoutput.com/api/v3/OData
+  description: Production v3 OData endpoint
+security:
+- BearerAuth: []
+- AccessToken: []
+tags:
+- name: Metadata
+  description: Service document and CSDL schema discovery
+- name: Property
+  description: RESO Property resource (listings)
+- name: Member
+  description: RESO Member resource (agents)
+- name: Office
+  description: RESO Office resource (brokerages)
+- name: OpenHouse
+  description: RESO OpenHouse resource
+- name: Media
+  description: RESO Media resource (photos, virtual tours)
+paths:
+  /{dataset}:
+    get:
+      tags: [Metadata]
+      summary: Get Service Document
+      description: Returns the OData service document listing all entity sets available in the dataset.
+      operationId: getServiceDocument
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      responses:
+        '200':
+          description: OData service document
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceDocument'
+  /{dataset}/$metadata:
+    get:
+      tags: [Metadata]
+      summary: Get CSDL Metadata
+      description: Returns the dataset's OData CSDL ($metadata) XML describing all entity types, properties, and navigation properties.
+      operationId: getMetadata
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      responses:
+        '200':
+          description: CSDL metadata document
+          content:
+            application/xml:
+              schema:
+                type: string
+  /{dataset}/Property:
+    get:
+      tags: [Property]
+      summary: List Properties
+      description: Query the Property entity set with OData query options. Returns RESO-normalized listing records including embedded Media.
+      operationId: listProperties
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Select'
+      - $ref: '#/components/parameters/Unselect'
+      - $ref: '#/components/parameters/Expand'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/Top'
+      - $ref: '#/components/parameters/Skip'
+      - $ref: '#/components/parameters/Count'
+      - $ref: '#/components/parameters/MaxPageSize'
+      responses:
+        '200':
+          description: Property collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyCollection'
+  /{dataset}/Property('{listingKey}'):
+    get:
+      tags: [Property]
+      summary: Get Property By Listing Key
+      description: Retrieve a single Property record by its `ListingKey`.
+      operationId: getProperty
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - name: listingKey
+        in: path
+        required: true
+        schema: { type: string }
+      - $ref: '#/components/parameters/Select'
+      - $ref: '#/components/parameters/Expand'
+      responses:
+        '200':
+          description: Property record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        '404':
+          description: Not found
+  /{dataset}/Member:
+    get:
+      tags: [Member]
+      summary: List Members
+      description: Query the Member entity set (real estate agents) with OData query options.
+      operationId: listMembers
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Select'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/Top'
+      - $ref: '#/components/parameters/Skip'
+      - $ref: '#/components/parameters/MaxPageSize'
+      responses:
+        '200':
+          description: Member collection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberCollection'
+  /{dataset}/Member('{memberKey}'):
+    get:
+      tags: [Member]
+      summary: Get Member By Key
+      description: Retrieve a single Member record by `MemberKey`.
+      operationId: getMember
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - name: memberKey
+        in: path
+        required: true
+        schema: { type: string }
+      responses:
+        '200':
+          description: Member record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+  /{dataset}/Office:
+    get:
+      tags: [Office]
+      summary: List Offices
+      description: Query the Office entity set (brokerages) with OData query options.
+      operationId: listOffices
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Select'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/Top'
+      - $ref: '#/components/parameters/Skip'
+      responses:
+        '200':
+          description: Office collection
+          content:
+            application/json:
+              schema:
+                type: object
+  /{dataset}/Office('{officeKey}'):
+    get:
+      tags: [Office]
+      summary: Get Office By Key
+      operationId: getOffice
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - name: officeKey
+        in: path
+        required: true
+        schema: { type: string }
+      responses:
+        '200':
+          description: Office record
+          content:
+            application/json:
+              schema:
+                type: object
+  /{dataset}/OpenHouse:
+    get:
+      tags: [OpenHouse]
+      summary: List Open Houses
+      description: Query the OpenHouse entity set with OData query options.
+      operationId: listOpenHouses
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Select'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/Top'
+      - $ref: '#/components/parameters/Skip'
+      responses:
+        '200':
+          description: OpenHouse collection
+          content:
+            application/json:
+              schema:
+                type: object
+  /{dataset}/Media:
+    get:
+      tags: [Media]
+      summary: List Media
+      description: Query the Media entity set independently of Property. Media is also returned embedded on Property records.
+      operationId: listMedia
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Select'
+      - $ref: '#/components/parameters/Top'
+      - $ref: '#/components/parameters/Skip'
+      responses:
+        '200':
+          description: Media collection
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+      description: '`Authorization: Bearer {access_token}` issued by Bridge per dataset.'
+    AccessToken:
+      type: apiKey
+      in: query
+      name: access_token
+      description: Per-dataset access token passed as a query parameter.
+  parameters:
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      description: MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`).
+      schema:
+        type: string
+    Filter:
+      name: $filter
+      in: query
+      description: OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).
+      schema: { type: string }
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return.
+      schema: { type: string }
+    Unselect:
+      name: unselect
+      in: query
+      description: Bridge extension — comma-separated list of fields to exclude (returns all other fields).
+      schema: { type: string }
+    Expand:
+      name: $expand
+      in: query
+      description: Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand.
+      schema: { type: string }
+    OrderBy:
+      name: $orderby
+      in: query
+      description: Sort expression (e.g. `ModificationTimestamp desc`).
+      schema: { type: string }
+    Top:
+      name: $top
+      in: query
+      description: Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.
+      schema:
+        type: integer
+        default: 10
+        maximum: 200
+    Skip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
+      schema:
+        type: integer
+    Count:
+      name: $count
+      in: query
+      description: Include `@odata.count` in the response.
+      schema:
+        type: boolean
+    MaxPageSize:
+      name: maxpagesize
+      in: header
+      description: Preferred page size (default 10, max 200).
+      schema:
+        type: integer
+        default: 10
+        maximum: 200
+  schemas:
+    ServiceDocument:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              kind: { type: string }
+              url: { type: string }
+    PropertyCollection:
+      type: object
+      properties:
+        '@odata.context': { type: string }
+        '@odata.count': { type: integer }
+        '@odata.nextLink': { type: string }
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+    Property:
+      type: object
+      description: RESO Property resource. Field set follows the RESO Data Dictionary; selected high-cardinality fields shown here.
+      properties:
+        ListingKey: { type: string }
+        ListingId: { type: string }
+        ListPrice: { type: number }
+        StandardStatus: { type: string, enum: [Active, Pending, Closed, Withdrawn, Canceled, Expired, Hold, ComingSoon, ActiveUnderContract] }
+        PropertyType: { type: string }
+        PropertySubType: { type: string }
+        UnparsedAddress: { type: string }
+        StreetNumber: { type: string }
+        StreetName: { type: string }
+        City: { type: string }
+        StateOrProvince: { type: string }
+        PostalCode: { type: string }
+        Country: { type: string }
+        Latitude: { type: number }
+        Longitude: { type: number }
+        BedroomsTotal: { type: integer }
+        BathroomsTotalInteger: { type: integer }
+        LivingArea: { type: number }
+        LotSizeSquareFeet: { type: number }
+        YearBuilt: { type: integer }
+        PublicRemarks: { type: string }
+        ListAgentKey: { type: string }
+        ListOfficeKey: { type: string }
+        ModificationTimestamp: { type: string, format: date-time }
+        OnMarketDate: { type: string, format: date }
+        CloseDate: { type: string, format: date }
+        Media:
+          type: array
+          items:
+            $ref: '#/components/schemas/Media'
+    MemberCollection:
+      type: object
+      properties:
+        '@odata.context': { type: string }
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+    Member:
+      type: object
+      properties:
+        MemberKey: { type: string }
+        MemberMlsId: { type: string }
+        MemberFirstName: { type: string }
+        MemberLastName: { type: string }
+        MemberEmail: { type: string }
+        MemberOfficePhone: { type: string }
+        MemberType: { type: string }
+        MemberStatus: { type: string }
+        OfficeKey: { type: string }
+        ModificationTimestamp: { type: string, format: date-time }
+    Media:
+      type: object
+      properties:
+        MediaKey: { type: string }
+        MediaURL: { type: string, format: uri }
+        MediaCategory: { type: string }
+        MediaType: { type: string }
+        Order: { type: integer }
+        ImageWidth: { type: integer }
+        ImageHeight: { type: integer }
+        ResourceRecordKey: { type: string }
+        ModificationTimestamp: { type: string, format: date-time }
