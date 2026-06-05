@@ -1,236 +1,221 @@
 aid: bridge-mls
 url: https://raw.githubusercontent.com/api-evangelist/bridge-mls/refs/heads/main/apis.yml
 apis:
-- aid: bridge-mls:bridge-reso-web-api
-  name: Bridge RESO Web API
-  tags:
+  - aid: bridge-mls:bridge-reso-web-api
+    name: Bridge RESO Web API
+    tags:
+      - Real Estate
+      - MLS
+      - RESO
+      - OData
+      - Listings
+    humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+    baseURL: https://api.bridgedataoutput.com/api/v2/OData
+    properties:
+      - url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+        type: Documentation
+      - url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+        type: Documentation
+      - url: https://bridgedataoutput.com/docs/explorer/mls-data
+        type: Documentation
+      - url: openapi/bridge-reso-web-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/bridge-property-schema.json
+        type: JSONSchema
+      - url: json-schema/bridge-member-schema.json
+        type: JSONSchema
+      - url: json-ld/bridge-mls-context.jsonld
+        type: JSONLD
+    description: >-
+      RESO Platinum-certified Web API providing OData 4.0-compliant access to MLS listing data normalized to the RESO
+      Data Dictionary. Resources include Property, Member, Office, OpenHouse, Media, Room, UnitType, and other
+      RESO-defined entities. Supports $filter, $select, $expand, $orderby, $top (page size), and $count OData query
+      options, plus Bridge extensions like the unselect parameter and the maxpagesize header (default 10, max 200). Data
+      is refreshed every 10 minutes or less per MLS feed. Bridge is preparing datasets for RESO Data Dictionary 2.0
+      certification.
+  - aid: bridge-mls:bridge-web-api
+    name: Bridge Web API
+    tags:
+      - Real Estate
+      - MLS
+      - Listings
+      - JSON
+    humanURL: https://bridgedataoutput.com/docs/platform/API/bridge
+    baseURL: https://api.bridgedataoutput.com/api/v2
+    properties:
+      - url: https://bridgedataoutput.com/docs/platform/API/bridge
+        type: Documentation
+      - url: openapi/bridge-web-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      Bridge's native (non-OData) RESTful Web API serving the same normalized MLS resources (Properties, Members,
+      Offices, OpenHouses, Rooms, UnitTypes, and off-market data where licensed) as flat JSON. Provides a simpler
+      request/response shape than the OData endpoint while preserving RESO Data Dictionary field naming. Media is
+      returned as an object on the Property record and is hosted on a CDN. Requires a server token or access token
+      issued by Bridge per dataset.
+  - aid: bridge-mls:bridge-webhooks-api
+    name: Bridge Webhooks API
+    tags:
+      - Real Estate
+      - Webhooks
+      - Events
+      - Real-time
+    humanURL: https://bridgedataoutput.com/docs/platform/API/webhooks
+    baseURL: https://api.bridgedataoutput.com/api/v2
+    properties:
+      - url: https://bridgedataoutput.com/docs/platform/API/webhooks
+        type: Documentation
+    description: >-
+      Manage webhook endpoints that receive real-time POST events from Bridge for listing create/update/delete and other
+      dataset changes, eliminating the need to poll the Web API. Endpoints require an HTTPS URL with a valid X.509
+      certificate; Bridge issues a PKI public key (PEM) for payload signature verification. Events are delivered as
+      application/json; endpoints must respond 200 quickly. Failed deliveries are retried with exponential backoff for
+      up to two days. Webhooks begin in a disabled state for testing before activation.
+  - aid: bridge-mls:zillow-group-data-api
+    name: Zillow Group Data (ZG Data) API
+    tags:
+      - Real Estate
+      - Public Records
+      - Property Data
+      - Parcels
+    humanURL: https://bridgedataoutput.com/zgdata
+    baseURL: https://api.bridgedataoutput.com/api/v2/OData
+    properties:
+      - url: https://bridgedataoutput.com/zgdata
+        type: Documentation
+      - url: https://bridgedataoutput.com/docs/explorer/zillow-group-econ-data
+        type: Documentation
+    description: >-
+      Zillow Group Data feeds delivered through Bridge — parcels, assessments, transactions, and Zillow Group Econ Data
+      (ZHVI, ZORI, market metrics) — accessible via the same OData/RESO Web API surface as MLS data. Licensed separately
+      from MLS feeds.
+name: Bridge
+tags:
   - Real Estate
   - MLS
   - RESO
-  - OData
   - Listings
-  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
-  baseURL: https://api.bridgedataoutput.com/api/v2/OData
-  properties:
-  - url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
-    type: Documentation
-  - url: https://bridgedataoutput.com/docs/explorer/reso-web-api
-    type: Documentation
-  - url: https://bridgedataoutput.com/docs/explorer/mls-data
-    type: Documentation
-  - url: openapi/bridge-reso-web-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/bridge-property-schema.json
-    type: JSONSchema
-  - url: json-schema/bridge-member-schema.json
-    type: JSONSchema
-  - url: json-ld/bridge-mls-context.jsonld
-    type: JSONLD
-  - type: NaftikoCapability
-    url: capabilities/reso-web-api-property.yaml
-  - type: NaftikoCapability
-    url: capabilities/reso-web-api-member.yaml
-  - type: NaftikoCapability
-    url: capabilities/reso-web-api-office.yaml
-  - type: NaftikoCapability
-    url: capabilities/reso-web-api-openhouse.yaml
-  - type: NaftikoCapability
-    url: capabilities/reso-web-api-media.yaml
-  - type: NaftikoCapability
-    url: capabilities/reso-web-api-metadata.yaml
-  description: RESO Platinum-certified Web API providing OData 4.0-compliant access to MLS listing data
-    normalized to the RESO Data Dictionary. Resources include Property, Member, Office, OpenHouse,
-    Media, Room, UnitType, and other RESO-defined entities. Supports $filter, $select, $expand, $orderby,
-    $top (page size), and $count OData query options, plus Bridge extensions like the unselect parameter
-    and the maxpagesize header (default 10, max 200). Data is refreshed every 10 minutes or less per
-    MLS feed. Bridge is preparing datasets for RESO Data Dictionary 2.0 certification.
-- aid: bridge-mls:bridge-web-api
-  name: Bridge Web API
-  tags:
-  - Real Estate
-  - MLS
-  - Listings
-  - JSON
-  humanURL: https://bridgedataoutput.com/docs/platform/API/bridge
-  baseURL: https://api.bridgedataoutput.com/api/v2
-  properties:
-  - url: https://bridgedataoutput.com/docs/platform/API/bridge
-    type: Documentation
-  - url: openapi/bridge-web-api-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/bridge-web-api-listings.yaml
-  description: Bridge's native (non-OData) RESTful Web API serving the same normalized MLS resources
-    (Properties, Members, Offices, OpenHouses, Rooms, UnitTypes, and off-market data where licensed) as
-    flat JSON. Provides a simpler request/response shape than the OData endpoint while preserving RESO
-    Data Dictionary field naming. Media is returned as an object on the Property record and is hosted
-    on a CDN. Requires a server token or access token issued by Bridge per dataset.
-- aid: bridge-mls:bridge-webhooks-api
-  name: Bridge Webhooks API
-  tags:
-  - Real Estate
-  - Webhooks
-  - Events
-  - Real-time
-  humanURL: https://bridgedataoutput.com/docs/platform/API/webhooks
-  baseURL: https://api.bridgedataoutput.com/api/v2
-  properties:
-  - url: https://bridgedataoutput.com/docs/platform/API/webhooks
-    type: Documentation
-  - type: NaftikoCapability
-    url: capabilities/webhooks-endpoints.yaml
-  description: Manage webhook endpoints that receive real-time POST events from Bridge for listing
-    create/update/delete and other dataset changes, eliminating the need to poll the Web API. Endpoints
-    require an HTTPS URL with a valid X.509 certificate; Bridge issues a PKI public key (PEM) for
-    payload signature verification. Events are delivered as application/json; endpoints must respond
-    200 quickly. Failed deliveries are retried with exponential backoff for up to two days. Webhooks
-    begin in a disabled state for testing before activation.
-- aid: bridge-mls:zillow-group-data-api
-  name: Zillow Group Data (ZG Data) API
-  tags:
-  - Real Estate
-  - Public Records
   - Property Data
-  - Parcels
-  humanURL: https://bridgedataoutput.com/zgdata
-  baseURL: https://api.bridgedataoutput.com/api/v2/OData
-  properties:
-  - url: https://bridgedataoutput.com/zgdata
-    type: Documentation
-  - url: https://bridgedataoutput.com/docs/explorer/zillow-group-econ-data
-    type: Documentation
-  - type: NaftikoCapability
-    url: capabilities/zg-data-parcels.yaml
-  description: Zillow Group Data feeds delivered through Bridge — parcels, assessments, transactions,
-    and Zillow Group Econ Data (ZHVI, ZORI, market metrics) — accessible via the same OData/RESO Web
-    API surface as MLS data. Licensed separately from MLS feeds.
-name: Bridge
-tags:
-- Real Estate
-- MLS
-- RESO
-- Listings
-- Property Data
-- Brokers
-- Data Distribution
+  - Brokers
+  - Data Distribution
 kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
-- type: Portal
-  url: https://www.bridgeinteractive.com
-- type: Portal
-  url: https://bridgedataoutput.com
-- url: https://bridgedataoutput.com/docs/platform/
-  name: Bridge Platform Documentation
-  type: Documentation
-- url: https://bridgedataoutput.com/docs/platform/Introduction/Signing-up-with-Bridge-API
-  name: Signing Up with Bridge API
-  type: GettingStarted
-- url: https://bridgedataoutput.com/docs/explorer/reso-web-api
-  name: RESO Web API Explorer
-  type: Sandbox
-- url: https://bridgedataoutput.com/docs/explorer/mls-data
-  name: MLS Data Explorer
-  type: Sandbox
-- url: https://bridgedataoutput.com/login
-  name: Bridge Data Output Login
-  type: SignUp
-- url: https://www.bridgeinteractive.com/developers/bridge-api/
-  name: Bridge API for Developers
-  type: Documentation
-- url: https://www.bridgeinteractive.com/developers/data-access/
-  name: Data Access (RETS / RESO Web API)
-  type: Documentation
-- url: https://www.bridgeinteractive.com/developers/zillow-group-data/
-  name: Zillow Group Data
-  type: Documentation
-- url: https://www.bridgeinteractive.com/resources/api-documentation/
-  name: API Documentation Resources
-  type: Documentation
-- url: https://updates.bridgedataoutput.com/
-  name: Bridge Platform Updates
-  type: ChangeLog
-- url: https://www.bridgeinteractive.com/bridge-platform-updates/
-  name: Bridge Platform Updates (Marketing)
-  type: ChangeLog
-- url: https://bridgedataoutput.com/help
-  name: Bridge Help
-  type: Support
-- url: mailto:support@bridgeinteractive.com
-  name: Support Email
-  type: Support
-- url: https://www.bridgeinteractive.com/about/
-  name: About Bridge Interactive
-  type: AboutUs
-- url: https://www.bridgeinteractive.com/contact/
-  name: Contact
-  type: ContactForm
-- url: https://www.bridgeinteractive.com/privacy-policy/
-  type: PrivacyPolicy
-- url: https://www.bridgeinteractive.com/terms-of-use/
-  type: TermsOfService
-- url: https://www.linkedin.com/company/bridge-interact
-  type: LinkedIn
-- url: https://www.reso.org/
-  name: Real Estate Standards Organization
-  type: Documentation
-- url: https://www.reso.org/data-dictionary/
-  name: RESO Data Dictionary
-  type: Documentation
-- url: https://www.reso.org/reso-web-api/
-  name: RESO Web API Specification
-  type: Documentation
-- url: https://www.reso.org/certification/
-  name: RESO Certification (Bridge is Platinum)
-  type: Documentation
-- url: plans/bridge-mls-plans-pricing.yml
-  type: Plans
-- url: rate-limits/bridge-mls-rate-limits.yml
-  type: RateLimits
-- url: finops/bridge-mls-finops.yml
-  type: FinOps
-- type: Features
-  data:
-  - RESO Platinum-certified Web API serving normalized MLS listing data across the US and Canada
-  - OData 4.0 query surface with $filter, $select, $expand, $orderby, $top, $count plus Bridge unselect extension
-  - Resources include Property, Member, Office, OpenHouse, Media, Room, UnitType, and other RESO-defined entities
-  - Both v2 (api.bridgedataoutput.com/api/v2) and v3 (api.bridgedataoutput.com/api/v3) endpoints
-  - Native Bridge Web API serving the same resources as flat JSON for non-OData consumers
-  - Webhooks API for real-time listing change events with PKI-signed payloads and exponential-backoff retries
-  - Server Token and Access Token authentication scoped per dataset
-  - Data refreshed every 10 minutes or less per MLS feed
-  - Media returned as embedded object on Property records, CDN-hosted at highest available resolution
-  - Off-market and historical data available where licensed by the MLS
-  - DataSystem endpoint to discover dataset capabilities and metadata
-  - $metadata endpoint exposes the OData CSDL schema per dataset
-  - maxpagesize header (default 10, max 200) controls page size — Bridge interprets $top as page size, not total
-  - Zillow Group Data feeds (parcels, assessments, ZHVI/ZORI econ data) on the same API surface
-  - Parity Plus program lets MLSs customize the API the way they would with RETS
-  - Preparing datasets for RESO Data Dictionary 2.0 certification
-  - Public API Explorer with a test dataset for evaluation
-  sources:
-  - https://bridgedataoutput.com/docs/platform/
-  - https://bridgedataoutput.com/docs/platform/API/reso-web-api
-  - https://bridgedataoutput.com/docs/platform/API/bridge
-  - https://www.bridgeinteractive.com/developers/bridge-api/
-  - https://www.bridgeinteractive.com/developers/data-access/
-  - https://www.reso.org/blog/web-api-examples/mls-service-providers/bridge-api/
-  updated: '2026-05-25'
+  - type: Portal
+    url: https://www.bridgeinteractive.com
+  - type: Portal
+    url: https://bridgedataoutput.com
+  - url: https://bridgedataoutput.com/docs/platform/
+    name: Bridge Platform Documentation
+    type: Documentation
+  - url: https://bridgedataoutput.com/docs/platform/Introduction/Signing-up-with-Bridge-API
+    name: Signing Up with Bridge API
+    type: GettingStarted
+  - url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+    name: RESO Web API Explorer
+    type: Sandbox
+  - url: https://bridgedataoutput.com/docs/explorer/mls-data
+    name: MLS Data Explorer
+    type: Sandbox
+  - url: https://bridgedataoutput.com/login
+    name: Bridge Data Output Login
+    type: SignUp
+  - url: https://www.bridgeinteractive.com/developers/bridge-api/
+    name: Bridge API for Developers
+    type: Documentation
+  - url: https://www.bridgeinteractive.com/developers/data-access/
+    name: Data Access (RETS / RESO Web API)
+    type: Documentation
+  - url: https://www.bridgeinteractive.com/developers/zillow-group-data/
+    name: Zillow Group Data
+    type: Documentation
+  - url: https://www.bridgeinteractive.com/resources/api-documentation/
+    name: API Documentation Resources
+    type: Documentation
+  - url: https://updates.bridgedataoutput.com/
+    name: Bridge Platform Updates
+    type: ChangeLog
+  - url: https://www.bridgeinteractive.com/bridge-platform-updates/
+    name: Bridge Platform Updates (Marketing)
+    type: ChangeLog
+  - url: https://bridgedataoutput.com/help
+    name: Bridge Help
+    type: Support
+  - url: mailto:support@bridgeinteractive.com
+    name: Support Email
+    type: Support
+  - url: https://www.bridgeinteractive.com/about/
+    name: About Bridge Interactive
+    type: AboutUs
+  - url: https://www.bridgeinteractive.com/contact/
+    name: Contact
+    type: ContactForm
+  - url: https://www.bridgeinteractive.com/privacy-policy/
+    type: PrivacyPolicy
+  - url: https://www.bridgeinteractive.com/terms-of-use/
+    type: TermsOfService
+  - url: https://www.linkedin.com/company/bridge-interact
+    type: LinkedIn
+  - url: https://www.reso.org/
+    name: Real Estate Standards Organization
+    type: Documentation
+  - url: https://www.reso.org/data-dictionary/
+    name: RESO Data Dictionary
+    type: Documentation
+  - url: https://www.reso.org/reso-web-api/
+    name: RESO Web API Specification
+    type: Documentation
+  - url: https://www.reso.org/certification/
+    name: RESO Certification (Bridge is Platinum)
+    type: Documentation
+  - url: plans/bridge-mls-plans-pricing.yml
+    type: Plans
+  - url: rate-limits/bridge-mls-rate-limits.yml
+    type: RateLimits
+  - url: finops/bridge-mls-finops.yml
+    type: FinOps
+  - type: Features
+    data:
+      - RESO Platinum-certified Web API serving normalized MLS listing data across the US and Canada
+      - OData 4.0 query surface with $filter, $select, $expand, $orderby, $top, $count plus Bridge unselect extension
+      - Resources include Property, Member, Office, OpenHouse, Media, Room, UnitType, and other RESO-defined entities
+      - Both v2 (api.bridgedataoutput.com/api/v2) and v3 (api.bridgedataoutput.com/api/v3) endpoints
+      - Native Bridge Web API serving the same resources as flat JSON for non-OData consumers
+      - Webhooks API for real-time listing change events with PKI-signed payloads and exponential-backoff retries
+      - Server Token and Access Token authentication scoped per dataset
+      - Data refreshed every 10 minutes or less per MLS feed
+      - Media returned as embedded object on Property records, CDN-hosted at highest available resolution
+      - Off-market and historical data available where licensed by the MLS
+      - DataSystem endpoint to discover dataset capabilities and metadata
+      - $metadata endpoint exposes the OData CSDL schema per dataset
+      - maxpagesize header (default 10, max 200) controls page size — Bridge interprets $top as page size, not total
+      - Zillow Group Data feeds (parcels, assessments, ZHVI/ZORI econ data) on the same API surface
+      - Parity Plus program lets MLSs customize the API the way they would with RETS
+      - Preparing datasets for RESO Data Dictionary 2.0 certification
+      - Public API Explorer with a test dataset for evaluation
+    sources:
+      - https://bridgedataoutput.com/docs/platform/
+      - https://bridgedataoutput.com/docs/platform/API/reso-web-api
+      - https://bridgedataoutput.com/docs/platform/API/bridge
+      - https://www.bridgeinteractive.com/developers/bridge-api/
+      - https://www.bridgeinteractive.com/developers/data-access/
+      - https://www.reso.org/blog/web-api-examples/mls-service-providers/bridge-api/
+    updated: '2026-05-25'
 created: '2026-05-25'
 modified: '2026-05-25'
 position: Consuming
-description: Bridge (Bridge Interactive / Bridge Data Output) is a Zillow Group company that runs the
-  Bridge Platform — a RESO Platinum-certified MLS data distribution service used by Multiple Listing
-  Services and brokerages across the US and Canada. The Bridge RESO Web API exposes normalized listing
-  data (Property, Member, Office, OpenHouse, Media, Room, UnitType) via OData 4.0 at
-  api.bridgedataoutput.com/api/v2/OData, with a parallel native Bridge Web API serving the same
-  resources as flat JSON. A Webhooks API delivers real-time listing change events with PKI-signed
-  payloads. Bridge also distributes Zillow Group Data — parcels, assessments, and ZHVI/ZORI economic
-  feeds — through the same API surface.
+description: >-
+  Bridge (Bridge Interactive / Bridge Data Output) is a Zillow Group company that runs the Bridge Platform — a RESO
+  Platinum-certified MLS data distribution service used by Multiple Listing Services and brokerages across the US and
+  Canada. The Bridge RESO Web API exposes normalized listing data (Property, Member, Office, OpenHouse, Media, Room,
+  UnitType) via OData 4.0 at api.bridgedataoutput.com/api/v2/OData, with a parallel native Bridge Web API serving the
+  same resources as flat JSON. A Webhooks API delivers real-time listing change events with PKI-signed payloads. Bridge
+  also distributes Zillow Group Data — parcels, assessments, and ZHVI/ZORI economic feeds — through the same API
+  surface.
 maintainers:
-- FN: Kin Lane
-  email: info@apievangelist.com
-  X: apievangelist
-  url: https://apievangelist.com
+  - FN: Kin Lane
+    email: info@apievangelist.com
+    X: apievangelist
+    url: https://apievangelist.com
 specificationVersion: '0.16'
