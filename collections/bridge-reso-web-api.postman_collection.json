@@ -1,0 +1,1464 @@
+{
+  "item": [
+    {
+      "id": "79d41f88-78cf-4651-a639-1ff8d0a7d2fc",
+      "name": "Metadata",
+      "description": {
+        "content": "Service document and CSDL schema discovery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "913d4cff-c914-4489-b16b-31fc30e4b07e",
+          "name": "Get Service Document",
+          "request": {
+            "name": "Get Service Document",
+            "description": {
+              "content": "Returns the OData service document listing all entity sets available in the dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":dataset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4726d9d7-c299-45fc-837e-b1a9957ad6d5",
+              "name": "OData service document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"value\": [\n    {\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"url\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e2dce16-e212-47f1-a324-7e7506e774f2",
+          "name": "Get CSDL Metadata",
+          "request": {
+            "name": "Get CSDL Metadata",
+            "description": {
+              "content": "Returns the dataset's OData CSDL ($metadata) XML describing all entity types, properties, and navigation properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":dataset",
+                "$metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c09bf562-be6b-490d-a647-787ef2a5ae4b",
+              "name": "CSDL metadata document",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset",
+                    "$metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "85a98de1-444b-4f5d-b04e-ccd24772b948",
+      "name": "Property",
+      "description": {
+        "content": "RESO Property resource (listings)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "753fa199-9428-4764-a22b-d03d4017e004",
+          "name": "List Properties",
+          "request": {
+            "name": "List Properties",
+            "description": {
+              "content": "Query the Property entity set with OData query options. Returns RESO-normalized listing records including embedded Media.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":dataset",
+                "Property"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "unselect",
+                  "value": "<string>",
+                  "description": "Bridge extension — comma-separated list of fields to exclude (returns all other fields)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand."
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "Sort expression (e.g. `ModificationTimestamp desc`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "10",
+                  "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                },
+                {
+                  "disabled": false,
+                  "key": "$count",
+                  "value": "<boolean>",
+                  "description": "Include `@odata.count` in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Preferred page size (default 10, max 200).",
+                "key": "maxpagesize",
+                "value": "10"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92970246-1a24-4573-a6b5-871c10b23dde",
+              "name": "Property collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset",
+                    "Property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "unselect",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "10"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Preferred page size (default 10, max 200).",
+                    "key": "maxpagesize",
+                    "value": "10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.count\": 8590,\n  \"@odata.nextLink\": \"string\",\n  \"value\": [\n    {\n      \"ListingKey\": \"string\",\n      \"ListingId\": \"string\",\n      \"ListPrice\": 6184.6087234633105,\n      \"StandardStatus\": \"Active\",\n      \"PropertyType\": \"string\",\n      \"PropertySubType\": \"string\",\n      \"UnparsedAddress\": \"string\",\n      \"StreetNumber\": \"string\",\n      \"StreetName\": \"string\",\n      \"City\": \"string\",\n      \"StateOrProvince\": \"string\",\n      \"PostalCode\": \"string\",\n      \"Country\": \"string\",\n      \"Latitude\": 5252.851279099115,\n      \"Longitude\": 3304.6675448981655,\n      \"BedroomsTotal\": 3932,\n      \"BathroomsTotalInteger\": 5095,\n      \"LivingArea\": 4166.741367158966,\n      \"LotSizeSquareFeet\": 9400.667833651452,\n      \"YearBuilt\": 6190,\n      \"PublicRemarks\": \"string\",\n      \"ListAgentKey\": \"string\",\n      \"ListOfficeKey\": \"string\",\n      \"ModificationTimestamp\": \"1990-01-25T08:38:45.978Z\",\n      \"OnMarketDate\": \"2012-10-19\",\n      \"CloseDate\": \"1991-06-27\",\n      \"Media\": [\n        {\n          \"MediaKey\": \"string\",\n          \"MediaURL\": \"https://mF.luu6o9bWrR+Sr3EwviaZ2n7qhz0XNaCDHs.LF90uwErg\",\n          \"MediaCategory\": \"string\",\n          \"MediaType\": \"string\",\n          \"Order\": 7968,\n          \"ImageWidth\": 5740,\n          \"ImageHeight\": 9952,\n          \"ResourceRecordKey\": \"string\",\n          \"ModificationTimestamp\": \"1989-11-17T17:25:43.061Z\"\n        },\n        {\n          \"MediaKey\": \"string\",\n          \"MediaURL\": \"http://INjeOyrQUeyDxtzAVGbliCk.yltmuTzgWZbexJhP,onOaTHXMRHgX5.ezTK5T7nqhhoDt\",\n          \"MediaCategory\": \"string\",\n          \"MediaType\": \"string\",\n          \"Order\": 9355,\n          \"ImageWidth\": 4629,\n          \"ImageHeight\": 8710,\n          \"ResourceRecordKey\": \"string\",\n          \"ModificationTimestamp\": \"2012-02-02T21:49:32.279Z\"\n        }\n      ]\n    },\n    {\n      \"ListingKey\": \"string\",\n      \"ListingId\": \"string\",\n      \"ListPrice\": 3386.9815259530624,\n      \"StandardStatus\": \"Pending\",\n      \"PropertyType\": \"string\",\n      \"PropertySubType\": \"string\",\n      \"UnparsedAddress\": \"string\",\n      \"StreetNumber\": \"string\",\n      \"StreetName\": \"string\",\n      \"City\": \"string\",\n      \"StateOrProvince\": \"string\",\n      \"PostalCode\": \"string\",\n      \"Country\": \"string\",\n      \"Latitude\": 2619.7927322116134,\n      \"Longitude\": 2763.896990053788,\n      \"BedroomsTotal\": 5828,\n      \"BathroomsTotalInteger\": 3089,\n      \"LivingArea\": 9293.65614953483,\n      \"LotSizeSquareFeet\": 1311.9995479925005,\n      \"YearBuilt\": 2432,\n      \"PublicRemarks\": \"string\",\n      \"ListAgentKey\": \"string\",\n      \"ListOfficeKey\": \"string\",\n      \"ModificationTimestamp\": \"1965-09-23T09:25:21.864Z\",\n      \"OnMarketDate\": \"2015-07-13\",\n      \"CloseDate\": \"1967-07-26\",\n      \"Media\": [\n        {\n          \"MediaKey\": \"string\",\n          \"MediaURL\": \"http://AVesOaioLBoJzPJCfoYvHbxHtFXcngE.uwUHWjMtQPv5Syz4xSN7MVCYwX5rqhNJThqkUJuyHyAzddGFQ\",\n          \"MediaCategory\": \"string\",\n          \"MediaType\": \"string\",\n          \"Order\": 6009,\n          \"ImageWidth\": 8413,\n          \"ImageHeight\": 3356,\n          \"ResourceRecordKey\": \"string\",\n          \"ModificationTimestamp\": \"1961-05-07T05:18:36.381Z\"\n        },\n        {\n          \"MediaKey\": \"string\",\n          \"MediaURL\": \"https://PiLntGNbM.fxyaWBH0g9S+ZoG-m,e64fHpQ1t5UBHiWdzc2UH2rSUwG\",\n          \"MediaCategory\": \"string\",\n          \"MediaType\": \"string\",\n          \"Order\": 5905,\n          \"ImageWidth\": 7426,\n          \"ImageHeight\": 1589,\n          \"ResourceRecordKey\": \"string\",\n          \"ModificationTimestamp\": \"1957-02-04T20:21:23.406Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd5d8a44-59bb-4279-a0e8-227dbe5901d0",
+          "name": "Get Property By Listing Key",
+          "request": {
+            "name": "Get Property By Listing Key",
+            "description": {
+              "content": "Retrieve a single Property record by its `ListingKey`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":dataset",
+                "Property('{{listingKey}}')"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50697664-1e0d-4220-8731-da05b47c30dd",
+              "name": "Property record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset",
+                    "Property('{{listingKey}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ListingKey\": \"string\",\n  \"ListingId\": \"string\",\n  \"ListPrice\": 3323.878877519102,\n  \"StandardStatus\": \"Withdrawn\",\n  \"PropertyType\": \"string\",\n  \"PropertySubType\": \"string\",\n  \"UnparsedAddress\": \"string\",\n  \"StreetNumber\": \"string\",\n  \"StreetName\": \"string\",\n  \"City\": \"string\",\n  \"StateOrProvince\": \"string\",\n  \"PostalCode\": \"string\",\n  \"Country\": \"string\",\n  \"Latitude\": 6102.05272524968,\n  \"Longitude\": 2242.185500270912,\n  \"BedroomsTotal\": 2389,\n  \"BathroomsTotalInteger\": 1097,\n  \"LivingArea\": 1997.967883195061,\n  \"LotSizeSquareFeet\": 9091.077846768289,\n  \"YearBuilt\": 9383,\n  \"PublicRemarks\": \"string\",\n  \"ListAgentKey\": \"string\",\n  \"ListOfficeKey\": \"string\",\n  \"ModificationTimestamp\": \"2024-04-30T21:58:17.659Z\",\n  \"OnMarketDate\": \"1974-09-14\",\n  \"CloseDate\": \"2020-08-10\",\n  \"Media\": [\n    {\n      \"MediaKey\": \"string\",\n      \"MediaURL\": \"https://wRKKw.ixtmJ1g7cYEZDKKrBSXTP8woi3zEUSpllKLpMH9.gOYz3emC5fHHZCr5,jZ06nDfsxdxuW0Q.\",\n      \"MediaCategory\": \"string\",\n      \"MediaType\": \"string\",\n      \"Order\": 8878,\n      \"ImageWidth\": 2519,\n      \"ImageHeight\": 1365,\n      \"ResourceRecordKey\": \"string\",\n      \"ModificationTimestamp\": \"2017-03-26T11:05:38.020Z\"\n    },\n    {\n      \"MediaKey\": \"string\",\n      \"MediaURL\": \"http://B.vdnXcSfZ6YNbpfLSLm26yIt3C10,rbNK.\",\n      \"MediaCategory\": \"string\",\n      \"MediaType\": \"string\",\n      \"Order\": 1590,\n      \"ImageWidth\": 4137,\n      \"ImageHeight\": 7886,\n      \"ResourceRecordKey\": \"string\",\n      \"ModificationTimestamp\": \"1995-07-08T07:47:54.701Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3caee191-46e2-4159-88ae-ed7fd5f4ec76",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset",
+                    "Property('{{listingKey}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7c03ff70-8998-4b19-8913-b9eb87b943bc",
+      "name": "Member",
+      "description": {
+        "content": "RESO Member resource (agents)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31a36b61-fd5d-4aa3-b314-f9cc29f7ace3",
+          "name": "List Members",
+          "request": {
+            "name": "List Members",
+            "description": {
+              "content": "Query the Member entity set (real estate agents) with OData query options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":dataset",
+                "Member"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "Sort expression (e.g. `ModificationTimestamp desc`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "10",
+                  "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Preferred page size (default 10, max 200).",
+                "key": "maxpagesize",
+                "value": "10"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26fd6e48-e574-4e91-b8e1-1e0a8bef3f7f",
+              "name": "Member collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset",
+                    "Member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "10"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Preferred page size (default 10, max 200).",
+                    "key": "maxpagesize",
+                    "value": "10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"value\": [\n    {\n      \"MemberKey\": \"string\",\n      \"MemberMlsId\": \"string\",\n      \"MemberFirstName\": \"string\",\n      \"MemberLastName\": \"string\",\n      \"MemberEmail\": \"string\",\n      \"MemberOfficePhone\": \"string\",\n      \"MemberType\": \"string\",\n      \"MemberStatus\": \"string\",\n      \"OfficeKey\": \"string\",\n      \"ModificationTimestamp\": \"1955-12-05T01:30:37.225Z\"\n    },\n    {\n      \"MemberKey\": \"string\",\n      \"MemberMlsId\": \"string\",\n      \"MemberFirstName\": \"string\",\n      \"MemberLastName\": \"string\",\n      \"MemberEmail\": \"string\",\n      \"MemberOfficePhone\": \"string\",\n      \"MemberType\": \"string\",\n      \"MemberStatus\": \"string\",\n      \"OfficeKey\": \"string\",\n      \"ModificationTimestamp\": \"1959-03-16T11:37:59.496Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8d12a0b-3d4d-4e8c-8e64-f4a31d092328",
+          "name": "Get Member By Key",
+          "request": {
+            "name": "Get Member By Key",
+            "description": {
+              "content": "Retrieve a single Member record by `MemberKey`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":dataset",
+                "Member('{{memberKey}}')"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d5b2b51-b4d7-4953-aff6-e08430549828",
+              "name": "Member record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset",
+                    "Member('{{memberKey}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"MemberKey\": \"string\",\n  \"MemberMlsId\": \"string\",\n  \"MemberFirstName\": \"string\",\n  \"MemberLastName\": \"string\",\n  \"MemberEmail\": \"string\",\n  \"MemberOfficePhone\": \"string\",\n  \"MemberType\": \"string\",\n  \"MemberStatus\": \"string\",\n  \"OfficeKey\": \"string\",\n  \"ModificationTimestamp\": \"1989-10-06T02:32:05.024Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ef5ac2be-5980-4a1e-91df-b661596d4f71",
+      "name": "Office",
+      "description": {
+        "content": "RESO Office resource (brokerages)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a535a6f-75d5-4ec2-bf79-0de6a82f70f1",
+          "name": "List Offices",
+          "request": {
+            "name": "List Offices",
+            "description": {
+              "content": "Query the Office entity set (brokerages) with OData query options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":dataset",
+                "Office"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "Sort expression (e.g. `ModificationTimestamp desc`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "10",
+                  "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ab14a21-32bc-4d9e-a436-1e76991b62d8",
+              "name": "Office collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset",
+                    "Office"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "10"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b7ee6df-7aa1-448d-89bf-abf13fb90f5f",
+          "name": "Get Office By Key",
+          "request": {
+            "name": "Get Office By Key",
+            "description": {},
+            "url": {
+              "path": [
+                ":dataset",
+                "Office('{{officeKey}}')"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "945d89fe-8a87-44e8-ae38-2852a2feb011",
+              "name": "Office record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset",
+                    "Office('{{officeKey}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "59553ae1-aeb1-41b1-bc00-c5f1393fe44b",
+      "name": "OpenHouse",
+      "description": {
+        "content": "RESO OpenHouse resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7aa3933b-6715-4771-aebd-aa8ccd460a0c",
+          "name": "List Open Houses",
+          "request": {
+            "name": "List Open Houses",
+            "description": {
+              "content": "Query the OpenHouse entity set with OData query options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":dataset",
+                "OpenHouse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderby",
+                  "value": "<string>",
+                  "description": "Sort expression (e.g. `ModificationTimestamp desc`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "10",
+                  "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97b0b740-38e7-41e3-a0eb-933da736a580",
+              "name": "OpenHouse collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset",
+                    "OpenHouse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "10"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "825de088-e598-4aac-933f-ac411392d734",
+      "name": "Media",
+      "description": {
+        "content": "RESO Media resource (photos, virtual tours)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dc0c7809-ae56-4b79-af47-e6c806660523",
+          "name": "List Media",
+          "request": {
+            "name": "List Media",
+            "description": {
+              "content": "Query the Media entity set independently of Property. Media is also returned embedded on Property records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":dataset",
+                "Media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "10",
+                  "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0eec362f-5ae3-45ba-b95c-cde5011b23d9",
+              "name": "Media collection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":dataset",
+                    "Media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "10"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "officeKey"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "memberKey"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "listingKey"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "436d5f6b-582b-4e93-892e-fc02c4959f84",
+    "name": "Bridge RESO Web API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` —\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+      "type": "text/plain"
+    }
+  }
+}

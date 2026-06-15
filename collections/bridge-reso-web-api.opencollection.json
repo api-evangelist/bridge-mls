@@ -1,0 +1,455 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bridge RESO Web API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Service Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              }
+            ]
+          },
+          "docs": "Returns the OData service document listing all entity sets available in the dataset."
+        },
+        {
+          "info": {
+            "name": "Get CSDL Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/$metadata",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              }
+            ]
+          },
+          "docs": "Returns the dataset's OData CSDL ($metadata) XML describing all entity types, properties, and navigation properties."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Property",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/Property",
+            "headers": [
+              {
+                "name": "maxpagesize",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "unselect",
+                "value": "",
+                "type": "query",
+                "description": "Bridge extension — comma-separated list of fields to exclude (returns all other fields)."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression (e.g. `ModificationTimestamp desc`)."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "Include `@odata.count` in the response."
+              }
+            ]
+          },
+          "docs": "Query the Property entity set with OData query options. Returns RESO-normalized listing records including embedded Media."
+        },
+        {
+          "info": {
+            "name": "Get Property By Listing Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/Property(':listingKey')",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              },
+              {
+                "name": "listingKey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand."
+              }
+            ]
+          },
+          "docs": "Retrieve a single Property record by its `ListingKey`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Member",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/Member",
+            "headers": [
+              {
+                "name": "maxpagesize",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression (e.g. `ModificationTimestamp desc`)."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              }
+            ]
+          },
+          "docs": "Query the Member entity set (real estate agents) with OData query options."
+        },
+        {
+          "info": {
+            "name": "Get Member By Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/Member(':memberKey')",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              },
+              {
+                "name": "memberKey",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single Member record by `MemberKey`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Office",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Offices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/Office",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression (e.g. `ModificationTimestamp desc`)."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              }
+            ]
+          },
+          "docs": "Query the Office entity set (brokerages) with OData query options."
+        },
+        {
+          "info": {
+            "name": "Get Office By Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/Office(':officeKey')",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              },
+              {
+                "name": "officeKey",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Office By Key"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OpenHouse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Open Houses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/OpenHouse",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression (e.g. `ModificationTimestamp desc`)."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              }
+            ]
+          },
+          "docs": "Query the OpenHouse entity set with OData query options."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Media",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/Media",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              }
+            ]
+          },
+          "docs": "Query the Media entity set independently of Property. Media is also returned embedded on Property records."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

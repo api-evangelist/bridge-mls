@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bridge Web API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "access_token",
+      "value": "{{access_token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/:dataset/listings",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns listings (Properties) for the dataset with RESO field naming."
+        },
+        {
+          "info": {
+            "name": "Get Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/:dataset/listings/:listingId",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Listing"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/:dataset/agents",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Agents"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Offices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Offices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/:dataset/offices",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Offices"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OpenHouses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Open Houses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/:dataset/openhouses",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List Open Houses"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
