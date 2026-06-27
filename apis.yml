@@ -120,7 +120,7 @@ common:
     type: Sandbox
   - url: https://bridgedataoutput.com/login
     name: Bridge Data Output Login
-    type: SignUp
+    type: Signup
   - url: https://www.bridgeinteractive.com/developers/bridge-api/
     name: Bridge API for Developers
     type: Documentation
