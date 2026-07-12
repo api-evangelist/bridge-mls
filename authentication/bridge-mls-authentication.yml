@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bridge-reso-web-api-openapi.yml, openapi/bridge-web-api-openapi.yml, openapi/bridge-webhooks-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - query
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: opaque
+  description: '`Authorization: Bearer {access_token}` issued by Bridge per dataset.'
+  sources:
+  - openapi/bridge-reso-web-api-openapi.yml
+- name: AccessToken
+  type: apiKey
+  in: query
+  parameter: access_token
+  description: Per-dataset access token passed as a query parameter.
+  sources:
+  - openapi/bridge-reso-web-api-openapi.yml
+  - openapi/bridge-web-api-openapi.yml
+  - openapi/bridge-webhooks-api-openapi.yml
