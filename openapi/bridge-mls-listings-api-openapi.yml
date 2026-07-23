@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: Bridge RESO Web Agents Listings API
+  version: '2.0'
+  description: 'RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).
+
+    Data is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets
+
+    OData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec
+
+    with an `unselect` parameter that returns all fields except those listed.
+
+
+    Each request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` —
+
+    either as a query parameter or via the `Authorization: Bearer` header.
+
+    '
+  contact:
+    name: Bridge Interactive Support
+    email: support@bridgeinteractive.com
+    url: https://www.bridgeinteractive.com/contact/
+  license:
+    name: Bridge Data Output Terms of Use
+    url: https://www.bridgeinteractive.com/terms-of-use/
+servers:
+- url: https://api.bridgedataoutput.com/api/v2/OData
+  description: Production v2 OData endpoint
+- url: https://api.bridgedataoutput.com/api/v3/OData
+  description: Production v3 OData endpoint
+security:
+- BearerAuth: []
+- AccessToken: []
+tags:
+- name: Listings
+paths:
+  /{dataset}/listings:
+    get:
+      tags:
+      - Listings
+      summary: List Listings
+      description: Returns listings (Properties) for the dataset with RESO field naming.
+      operationId: listListings
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+          maximum: 200
+      - name: offset
+        in: query
+        schema:
+          type: integer
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+      - name: order
+        in: query
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - name: fields
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Listing collection
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  status:
+                    type: integer
+                  bundle:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: integer
+  /{dataset}/listings/{listingId}:
+    get:
+      tags:
+      - Listings
+      summary: Get Listing
+      operationId: getListing
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - name: listingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Listing record
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+      description: '`Authorization: Bearer {access_token}` issued by Bridge per dataset.'
+    AccessToken:
+      type: apiKey
+      in: query
+      name: access_token
+      description: Per-dataset access token passed as a query parameter.

@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: Bridge RESO Web Agents Office API
+  version: '2.0'
+  description: 'RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).
+
+    Data is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets
+
+    OData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec
+
+    with an `unselect` parameter that returns all fields except those listed.
+
+
+    Each request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` —
+
+    either as a query parameter or via the `Authorization: Bearer` header.
+
+    '
+  contact:
+    name: Bridge Interactive Support
+    email: support@bridgeinteractive.com
+    url: https://www.bridgeinteractive.com/contact/
+  license:
+    name: Bridge Data Output Terms of Use
+    url: https://www.bridgeinteractive.com/terms-of-use/
+servers:
+- url: https://api.bridgedataoutput.com/api/v2/OData
+  description: Production v2 OData endpoint
+- url: https://api.bridgedataoutput.com/api/v3/OData
+  description: Production v3 OData endpoint
+security:
+- BearerAuth: []
+- AccessToken: []
+tags:
+- name: Office
+  description: RESO Office resource (brokerages)
+paths:
+  /{dataset}/Office:
+    get:
+      tags:
+      - Office
+      summary: List Offices
+      description: Query the Office entity set (brokerages) with OData query options.
+      operationId: listOffices
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Select'
+      - $ref: '#/components/parameters/OrderBy'
+      - $ref: '#/components/parameters/Top'
+      - $ref: '#/components/parameters/Skip'
+      responses:
+        '200':
+          description: Office collection
+          content:
+            application/json:
+              schema:
+                type: object
+  /{dataset}/Office('{officeKey}'):
+    get:
+      tags:
+      - Office
+      summary: Get Office By Key
+      operationId: getOffice
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - name: officeKey
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Office record
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return.
+      schema:
+        type: string
+    Top:
+      name: $top
+      in: query
+      description: Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.
+      schema:
+        type: integer
+        default: 10
+        maximum: 200
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      description: MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`).
+      schema:
+        type: string
+    OrderBy:
+      name: $orderby
+      in: query
+      description: Sort expression (e.g. `ModificationTimestamp desc`).
+      schema:
+        type: string
+    Skip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
+      schema:
+        type: integer
+    Filter:
+      name: $filter
+      in: query
+      description: OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+      description: '`Authorization: Bearer {access_token}` issued by Bridge per dataset.'
+    AccessToken:
+      type: apiKey
+      in: query
+      name: access_token
+      description: Per-dataset access token passed as a query parameter.

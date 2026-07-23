@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Bridge RESO Web Agents Webhooks API
+  version: '2.0'
+  description: 'RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).
+
+    Data is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets
+
+    OData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec
+
+    with an `unselect` parameter that returns all fields except those listed.
+
+
+    Each request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` —
+
+    either as a query parameter or via the `Authorization: Bearer` header.
+
+    '
+  contact:
+    name: Bridge Interactive Support
+    email: support@bridgeinteractive.com
+    url: https://www.bridgeinteractive.com/contact/
+  license:
+    name: Bridge Data Output Terms of Use
+    url: https://www.bridgeinteractive.com/terms-of-use/
+servers:
+- url: https://api.bridgedataoutput.com/api/v2/OData
+  description: Production v2 OData endpoint
+- url: https://api.bridgedataoutput.com/api/v3/OData
+  description: Production v3 OData endpoint
+security:
+- BearerAuth: []
+- AccessToken: []
+tags:
+- name: Webhooks
+paths:
+  /{dataset}/webhooks:
+    get:
+      tags:
+      - Webhooks
+      summary: List Webhook Endpoints
+      operationId: listWebhooks
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      responses:
+        '200':
+          description: Webhook collection
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      tags:
+      - Webhooks
+      summary: Create Webhook Endpoint
+      operationId: createWebhook
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - url
+              - events
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: HTTPS endpoint with a valid X.509 certificate.
+                events:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - property.created
+                    - property.updated
+                    - property.deleted
+                    - member.updated
+                    - office.updated
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Webhook created (disabled state)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  url:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - disabled
+                    - active
+                  publicKey:
+                    type: string
+                    description: PEM-encoded PKI public key for verifying event signatures.
+  /{dataset}/webhooks/{webhookId}:
+    get:
+      tags:
+      - Webhooks
+      summary: Get Webhook Endpoint
+      operationId: getWebhook
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook record
+          content:
+            application/json:
+              schema:
+                type: object
+    patch:
+      tags:
+      - Webhooks
+      summary: Update Webhook Endpoint
+      operationId: updateWebhook
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Updated webhook
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags:
+      - Webhooks
+      summary: Delete Webhook Endpoint
+      operationId: deleteWebhook
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deleted
+  /{dataset}/webhooks/{webhookId}/test:
+    post:
+      tags:
+      - Webhooks
+      summary: Test Webhook Endpoint
+      description: Sends a test event to the endpoint while in disabled state to verify reachability and signature handling.
+      operationId: testWebhook
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Test delivery result
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+      description: '`Authorization: Bearer {access_token}` issued by Bridge per dataset.'
+    AccessToken:
+      type: apiKey
+      in: query
+      name: access_token
+      description: Per-dataset access token passed as a query parameter.

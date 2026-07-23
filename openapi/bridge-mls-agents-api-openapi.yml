@@ -1,0 +1,70 @@
+openapi: 3.1.0
+info:
+  title: Bridge RESO Web Agents API
+  version: '2.0'
+  description: 'RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).
+
+    Data is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets
+
+    OData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec
+
+    with an `unselect` parameter that returns all fields except those listed.
+
+
+    Each request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` —
+
+    either as a query parameter or via the `Authorization: Bearer` header.
+
+    '
+  contact:
+    name: Bridge Interactive Support
+    email: support@bridgeinteractive.com
+    url: https://www.bridgeinteractive.com/contact/
+  license:
+    name: Bridge Data Output Terms of Use
+    url: https://www.bridgeinteractive.com/terms-of-use/
+servers:
+- url: https://api.bridgedataoutput.com/api/v2/OData
+  description: Production v2 OData endpoint
+- url: https://api.bridgedataoutput.com/api/v3/OData
+  description: Production v3 OData endpoint
+security:
+- BearerAuth: []
+- AccessToken: []
+tags:
+- name: Agents
+paths:
+  /{dataset}/agents:
+    get:
+      tags:
+      - Agents
+      summary: List Agents
+      operationId: listAgents
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      responses:
+        '200':
+          description: Agent collection
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque
+      description: '`Authorization: Bearer {access_token}` issued by Bridge per dataset.'
+    AccessToken:
+      type: apiKey
+      in: query
+      name: access_token
+      description: Per-dataset access token passed as a query parameter.
