@@ -1,94 +1,307 @@
 aid: bridge-mls
 url: https://raw.githubusercontent.com/api-evangelist/bridge-mls/refs/heads/main/apis.yml
 apis:
-  - aid: bridge-mls:bridge-reso-web-api
-    name: Bridge RESO Web API
-    tags:
-      - Real Estate
-      - MLS
-      - RESO
-      - OData
-      - Listings
-    humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
-    baseURL: https://api.bridgedataoutput.com/api/v2/OData
-    properties:
-      - url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
-        type: Documentation
-      - url: https://bridgedataoutput.com/docs/explorer/reso-web-api
-        type: Documentation
-      - url: https://bridgedataoutput.com/docs/explorer/mls-data
-        type: Documentation
-      - url: openapi/bridge-reso-web-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/bridge-property-schema.json
-        type: JSONSchema
-      - url: json-schema/bridge-member-schema.json
-        type: JSONSchema
-      - url: json-ld/bridge-mls-context.jsonld
-        type: JSONLD
-    description: >-
-      RESO Platinum-certified Web API providing OData 4.0-compliant access to MLS listing data normalized to the RESO
-      Data Dictionary. Resources include Property, Member, Office, OpenHouse, Media, Room, UnitType, and other
-      RESO-defined entities. Supports $filter, $select, $expand, $orderby, $top (page size), and $count OData query
-      options, plus Bridge extensions like the unselect parameter and the maxpagesize header (default 10, max 200). Data
-      is refreshed every 10 minutes or less per MLS feed. Bridge is preparing datasets for RESO Data Dictionary 2.0
-      certification.
-  - aid: bridge-mls:bridge-web-api
-    name: Bridge Web API
-    tags:
-      - Real Estate
-      - MLS
-      - Listings
-      - JSON
-    humanURL: https://bridgedataoutput.com/docs/platform/API/bridge
-    baseURL: https://api.bridgedataoutput.com/api/v2
-    properties:
-      - url: https://bridgedataoutput.com/docs/platform/API/bridge
-        type: Documentation
-      - url: openapi/bridge-web-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      Bridge's native (non-OData) RESTful Web API serving the same normalized MLS resources (Properties, Members,
-      Offices, OpenHouses, Rooms, UnitTypes, and off-market data where licensed) as flat JSON. Provides a simpler
-      request/response shape than the OData endpoint while preserving RESO Data Dictionary field naming. Media is
-      returned as an object on the Property record and is hosted on a CDN. Requires a server token or access token
-      issued by Bridge per dataset.
-  - aid: bridge-mls:bridge-webhooks-api
-    name: Bridge Webhooks API
-    tags:
-      - Real Estate
-      - Webhooks
-      - Events
-      - Real-time
-    humanURL: https://bridgedataoutput.com/docs/platform/API/webhooks
-    baseURL: https://api.bridgedataoutput.com/api/v2
-    properties:
-      - url: https://bridgedataoutput.com/docs/platform/API/webhooks
-        type: Documentation
-    description: >-
-      Manage webhook endpoints that receive real-time POST events from Bridge for listing create/update/delete and other
-      dataset changes, eliminating the need to poll the Web API. Endpoints require an HTTPS URL with a valid X.509
-      certificate; Bridge issues a PKI public key (PEM) for payload signature verification. Events are delivered as
-      application/json; endpoints must respond 200 quickly. Failed deliveries are retried with exponential backoff for
-      up to two days. Webhooks begin in a disabled state for testing before activation.
-  - aid: bridge-mls:zillow-group-data-api
-    name: Zillow Group Data (ZG Data) API
-    tags:
-      - Real Estate
-      - Public Records
-      - Property Data
-      - Parcels
-    humanURL: https://bridgedataoutput.com/zgdata
-    baseURL: https://api.bridgedataoutput.com/api/v2/OData
-    properties:
-      - url: https://bridgedataoutput.com/zgdata
-        type: Documentation
-      - url: https://bridgedataoutput.com/docs/explorer/zillow-group-econ-data
-        type: Documentation
-    description: >-
-      Zillow Group Data feeds delivered through Bridge — parcels, assessments, transactions, and Zillow Group Econ Data
-      (ZHVI, ZORI, market metrics) — accessible via the same OData/RESO Web API surface as MLS data. Licensed separately
-      from MLS feeds.
+- aid: bridge-mls:bridge-webhooks-api
+  name: Bridge Webhooks API
+  tags:
+  - Real Estate
+  - Webhooks
+  - Events
+  - Real-time
+  humanURL: https://bridgedataoutput.com/docs/platform/API/webhooks
+  baseURL: https://api.bridgedataoutput.com/api/v2
+  properties:
+  - url: https://bridgedataoutput.com/docs/platform/API/webhooks
+    type: Documentation
+  description: >-
+    Manage webhook endpoints that receive real-time POST events from Bridge for listing create/update/delete
+    and other dataset changes, eliminating the need to poll the Web API. Endpoints require an HTTPS URL
+    with a valid X.509 certificate; Bridge issues a PKI public key (PEM) for payload signature verification.
+    Events are delivered as application/json; endpoints must respond 200 quickly. Failed deliveries are
+    retried with exponential backoff for up to two days. Webhooks begin in a disabled state for testing
+    before activation.
+- aid: bridge-mls:zillow-group-data-api
+  name: Zillow Group Data (ZG Data) API
+  tags:
+  - Real Estate
+  - Public Records
+  - Property Data
+  - Parcels
+  humanURL: https://bridgedataoutput.com/zgdata
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  properties:
+  - url: https://bridgedataoutput.com/zgdata
+    type: Documentation
+  - url: https://bridgedataoutput.com/docs/explorer/zillow-group-econ-data
+    type: Documentation
+  description: >-
+    Zillow Group Data feeds delivered through Bridge — parcels, assessments, transactions, and Zillow
+    Group Econ Data (ZHVI, ZORI, market metrics) — accessible via the same OData/RESO Web API surface
+    as MLS data. Licensed separately from MLS feeds.
+- aid: bridge-mls:bridge-mls-agents-api
+  name: Bridge Agents API
+  description: The Agents API from Bridge — 1 operation(s) for agents.
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - Agents
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-agents-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-listings-api
+  name: Bridge Listings API
+  description: The Listings API from Bridge — 2 operation(s) for listings.
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - Listings
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-listings-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-media-api
+  name: Bridge Media API
+  description: RESO Media resource (photos, virtual tours)
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-media-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-member-api
+  name: Bridge Member API
+  description: RESO Member resource (agents)
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - Member
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-member-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-metadata-api
+  name: Bridge Metadata API
+  description: Service document and CSDL schema discovery
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-office-api
+  name: Bridge Office API
+  description: RESO Office resource (brokerages)
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - Office
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-office-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-offices-api
+  name: Bridge Offices API
+  description: The Offices API from Bridge — 1 operation(s) for offices.
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - Offices
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-offices-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-openhouse-api
+  name: Bridge OpenHouse API
+  description: RESO OpenHouse resource
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - OpenHouse
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-openhouse-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-openhouses-api
+  name: Bridge OpenHouses API
+  description: The OpenHouses API from Bridge — 1 operation(s) for openhouses.
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - OpenHouses
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-openhouses-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-property-api
+  name: Bridge Property API
+  description: RESO Property resource (listings)
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - Property
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-property-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-webhooks-api
+  name: Bridge Webhooks API
+  description: The Webhooks API from Bridge — 3 operation(s) for webhooks.
+  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  baseURL: https://api.bridgedataoutput.com/api/v2/OData
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
 name: Bridge
 tags:
   - Real Estate
@@ -99,9 +312,24 @@ tags:
   - Brokers
   - Data Distribution
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bridge-mls.png
 access: 3rd-Party
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/bridge/overview
   - type: AgenticAccess
     url: agentic-access/bridge-mls-agentic-access.yml
   - type: DomainSecurity
