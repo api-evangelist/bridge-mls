@@ -1,0 +1,135 @@
+{
+  "info": {
+    "_postman_id": "13c24eec-e512-4583-a0d3-60fa48282abb",
+    "name": "Bridge RESO Web Agents OpenHouses API",
+    "description": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` \u2014\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:16:10.000Z",
+    "updatedAt": "2026-07-28T01:16:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-13c24eec-e512-4583-a0d3-60fa48282abb"
+  },
+  "item": [
+    {
+      "name": "{dataset}",
+      "item": [
+        {
+          "name": "openhouses",
+          "item": [
+            {
+              "name": "List Open Houses",
+              "id": "9ad628d4-ed35-4d46-becc-8ab42695d3a0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/openhouses",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "openhouses"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cdc9c4f6-bef5-4fe8-a2dc-9c1db5f28e65",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2646324e-9fdc-47f1-90df-e1a69d68b994",
+                  "name": "OpenHouse collection",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/openhouses",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "openhouses"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:16:10.000Z",
+                  "updatedAt": "2026-07-28T01:16:10.000Z",
+                  "uid": "35240-2646324e-9fdc-47f1-90df-e1a69d68b994"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:10.000Z",
+              "updatedAt": "2026-07-28T01:16:10.000Z",
+              "uid": "35240-9ad628d4-ed35-4d46-becc-8ab42695d3a0"
+            }
+          ],
+          "id": "b7cee9ea-cb9e-46f9-80cf-4bae8410e403",
+          "createdAt": "2026-07-28T01:16:10.000Z",
+          "updatedAt": "2026-07-28T01:16:10.000Z",
+          "uid": "35240-b7cee9ea-cb9e-46f9-80cf-4bae8410e403"
+        }
+      ],
+      "id": "fad8422f-f6bf-47aa-8ed5-8a810673d123",
+      "createdAt": "2026-07-28T01:16:10.000Z",
+      "updatedAt": "2026-07-28T01:16:10.000Z",
+      "uid": "35240-fad8422f-f6bf-47aa-8ed5-8a810673d123"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData"
+    }
+  ]
+}

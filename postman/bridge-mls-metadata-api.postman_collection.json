@@ -1,0 +1,222 @@
+{
+  "info": {
+    "_postman_id": "bc947a16-8316-4d02-a15f-d8c67bf6f373",
+    "name": "Bridge RESO Web Agents Metadata API",
+    "description": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` \u2014\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:16:07.000Z",
+    "updatedAt": "2026-07-28T01:16:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bc947a16-8316-4d02-a15f-d8c67bf6f373"
+  },
+  "item": [
+    {
+      "name": "{dataset}",
+      "item": [
+        {
+          "name": "$metadata",
+          "item": [
+            {
+              "name": "Get CSDL Metadata",
+              "id": "ab3c81e9-9bf4-46bd-bddb-807ee2e84cd8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/$metadata",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "$metadata"
+                  ],
+                  "variable": [
+                    {
+                      "id": "800e73ac-3948-45f6-bbfe-1c724a12ca5b",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "description": "Returns the dataset's OData CSDL ($metadata) XML describing all entity types, properties, and navigation properties."
+              },
+              "response": [
+                {
+                  "id": "4f4592da-c737-46c3-b632-3855cf1ff2d1",
+                  "name": "CSDL metadata document",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/xml"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/$metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "$metadata"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "xml",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/xml"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+                  "createdAt": "2026-07-28T01:16:07.000Z",
+                  "updatedAt": "2026-07-28T01:16:07.000Z",
+                  "uid": "35240-4f4592da-c737-46c3-b632-3855cf1ff2d1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:07.000Z",
+              "updatedAt": "2026-07-28T01:16:07.000Z",
+              "uid": "35240-ab3c81e9-9bf4-46bd-bddb-807ee2e84cd8"
+            }
+          ],
+          "id": "25f440b8-3e77-4144-af86-6b43c6e33daa",
+          "createdAt": "2026-07-28T01:16:07.000Z",
+          "updatedAt": "2026-07-28T01:16:07.000Z",
+          "uid": "35240-25f440b8-3e77-4144-af86-6b43c6e33daa"
+        },
+        {
+          "name": "Get Service Document",
+          "id": "cbb77070-19c5-4ca3-8d2f-3b0c3aa91400",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:dataset",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":dataset"
+              ],
+              "variable": [
+                {
+                  "id": "a31b7820-90af-4947-9c61-e466ed324114",
+                  "key": "dataset",
+                  "value": "<string>",
+                  "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                }
+              ]
+            },
+            "description": "Returns the OData service document listing all entity sets available in the dataset."
+          },
+          "response": [
+            {
+              "id": "8d991ac7-9d18-4ec5-aebd-2c0d37ec13db",
+              "name": "OData service document",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset"
+                  ],
+                  "variable": [
+                    {
+                      "key": "dataset"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"@odata.context\": \"<string>\",\n  \"value\": [\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"kind\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:16:07.000Z",
+              "updatedAt": "2026-07-28T01:16:07.000Z",
+              "uid": "35240-8d991ac7-9d18-4ec5-aebd-2c0d37ec13db"
+            }
+          ],
+          "createdAt": "2026-07-28T01:16:07.000Z",
+          "updatedAt": "2026-07-28T01:16:07.000Z",
+          "uid": "35240-cbb77070-19c5-4ca3-8d2f-3b0c3aa91400"
+        }
+      ],
+      "id": "0a9e04de-9c91-4f54-9a30-660415c5a529",
+      "createdAt": "2026-07-28T01:16:07.000Z",
+      "updatedAt": "2026-07-28T01:16:07.000Z",
+      "uid": "35240-0a9e04de-9c91-4f54-9a30-660415c5a529"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData"
+    }
+  ]
+}

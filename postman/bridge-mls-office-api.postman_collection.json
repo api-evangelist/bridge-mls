@@ -1,0 +1,290 @@
+{
+  "info": {
+    "_postman_id": "2661c2bd-7f74-48fa-a626-7de1ac0a7401",
+    "name": "Bridge RESO Web Agents Office API",
+    "description": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` \u2014\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:16:07.000Z",
+    "updatedAt": "2026-07-28T01:16:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2661c2bd-7f74-48fa-a626-7de1ac0a7401"
+  },
+  "item": [
+    {
+      "name": "{dataset}",
+      "item": [
+        {
+          "name": "Office",
+          "item": [
+            {
+              "name": "List Offices",
+              "id": "0f28ff6c-eb18-4246-89cd-606180311da5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/Office?$filter=<string>&$select=<string>&$orderby=<string>&$top=10&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "Office"
+                  ],
+                  "query": [
+                    {
+                      "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort expression (e.g. `ModificationTimestamp desc`).",
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.",
+                      "key": "$top",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Number of records to skip.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "999fea8d-0153-430b-974f-2bc7cce07bdb",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "description": "Query the Office entity set (brokerages) with OData query options."
+              },
+              "response": [
+                {
+                  "id": "05a5846f-3097-4d78-b33b-3913ae310db9",
+                  "name": "Office collection",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/Office?$filter=<string>&$select=<string>&$orderby=<string>&$top=10&$skip=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "Office"
+                      ],
+                      "query": [
+                        {
+                          "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).",
+                          "key": "$filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "$select",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort expression (e.g. `ModificationTimestamp desc`).",
+                          "key": "$orderby",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.",
+                          "key": "$top",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Number of records to skip.",
+                          "key": "$skip",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:16:08.000Z",
+                  "updatedAt": "2026-07-28T01:16:08.000Z",
+                  "uid": "35240-05a5846f-3097-4d78-b33b-3913ae310db9"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:08.000Z",
+              "updatedAt": "2026-07-28T01:16:08.000Z",
+              "uid": "35240-0f28ff6c-eb18-4246-89cd-606180311da5"
+            }
+          ],
+          "id": "2fed1ee1-33c5-4a5c-b076-40782d191db6",
+          "createdAt": "2026-07-28T01:16:08.000Z",
+          "updatedAt": "2026-07-28T01:16:08.000Z",
+          "uid": "35240-2fed1ee1-33c5-4a5c-b076-40782d191db6"
+        },
+        {
+          "name": "Office('{officeKey}')",
+          "item": [
+            {
+              "name": "Get Office By Key",
+              "id": "18a21077-1816-403e-a5dc-7e131ce4e604",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/Office('{{officeKey}}')",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "Office('{{officeKey}}')"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c16b14a0-a77d-49bf-a665-ea11823e060f",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "d6c93452-bc8e-4939-aaf7-3e7b3b928c59",
+                  "name": "Office record",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/Office('{{officeKey}}')",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "Office('{{officeKey}}')"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:16:08.000Z",
+                  "updatedAt": "2026-07-28T01:16:08.000Z",
+                  "uid": "35240-d6c93452-bc8e-4939-aaf7-3e7b3b928c59"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:08.000Z",
+              "updatedAt": "2026-07-28T01:16:08.000Z",
+              "uid": "35240-18a21077-1816-403e-a5dc-7e131ce4e604"
+            }
+          ],
+          "id": "79a8b091-19e9-4dee-8e4d-192a62d4f7ee",
+          "createdAt": "2026-07-28T01:16:08.000Z",
+          "updatedAt": "2026-07-28T01:16:08.000Z",
+          "uid": "35240-79a8b091-19e9-4dee-8e4d-192a62d4f7ee"
+        }
+      ],
+      "id": "16538ca8-6e83-47c8-ba28-a9a780bc5afd",
+      "createdAt": "2026-07-28T01:16:08.000Z",
+      "updatedAt": "2026-07-28T01:16:08.000Z",
+      "uid": "35240-16538ca8-6e83-47c8-ba28-a9a780bc5afd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData"
+    },
+    {
+      "key": "officeKey",
+      "value": "<string>"
+    }
+  ]
+}

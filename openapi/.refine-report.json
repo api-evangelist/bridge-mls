@@ -1,0 +1,34 @@
+{
+  "provider": "bridge-mls",
+  "sources": [
+    "bridge-mls-agents-api-openapi.yml",
+    "bridge-mls-listings-api-openapi.yml",
+    "bridge-mls-media-api-openapi.yml",
+    "bridge-mls-member-api-openapi.yml",
+    "bridge-mls-metadata-api-openapi.yml",
+    "bridge-mls-office-api-openapi.yml",
+    "bridge-mls-offices-api-openapi.yml",
+    "bridge-mls-openhouse-api-openapi.yml",
+    "bridge-mls-openhouses-api-openapi.yml",
+    "bridge-mls-property-api-openapi.yml",
+    "bridge-mls-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "bridge-mls-agents-api-openapi.yml",
+    "bridge-mls-listings-api-openapi.yml",
+    "bridge-mls-media-api-openapi.yml",
+    "bridge-mls-member-api-openapi.yml",
+    "bridge-mls-metadata-api-openapi.yml",
+    "bridge-mls-office-api-openapi.yml",
+    "bridge-mls-offices-api-openapi.yml",
+    "bridge-mls-openhouse-api-openapi.yml",
+    "bridge-mls-openhouses-api-openapi.yml",
+    "bridge-mls-property-api-openapi.yml",
+    "bridge-mls-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

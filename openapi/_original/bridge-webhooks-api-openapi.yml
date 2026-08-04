@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: Bridge Webhooks API
+  version: '2.0'
+  description: |
+    Manage webhook endpoints that receive real-time POST events from Bridge for listing change events.
+    Endpoints require an HTTPS URL with a valid X.509 certificate; Bridge issues a PKI public key
+    (PEM) for payload signature verification. Failed deliveries retry with exponential backoff for
+    up to two days. New endpoints start disabled for testing before activation.
+servers:
+- url: https://api.bridgedataoutput.com/api/v2
+security:
+- AccessToken: []
+tags:
+- name: Webhooks
+paths:
+  /{dataset}/webhooks:
+    get:
+      tags: [Webhooks]
+      summary: List Webhook Endpoints
+      operationId: listWebhooks
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      responses:
+        '200':
+          description: Webhook collection
+          content:
+            application/json:
+              schema: { type: object }
+    post:
+      tags: [Webhooks]
+      summary: Create Webhook Endpoint
+      operationId: createWebhook
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [url, events]
+              properties:
+                url: { type: string, format: uri, description: HTTPS endpoint with a valid X.509 certificate. }
+                events:
+                  type: array
+                  items: { type: string, enum: [property.created, property.updated, property.deleted, member.updated, office.updated] }
+                description: { type: string }
+      responses:
+        '201':
+          description: Webhook created (disabled state)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  url: { type: string }
+                  status: { type: string, enum: [disabled, active] }
+                  publicKey: { type: string, description: PEM-encoded PKI public key for verifying event signatures. }
+  /{dataset}/webhooks/{webhookId}:
+    get:
+      tags: [Webhooks]
+      summary: Get Webhook Endpoint
+      operationId: getWebhook
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - { name: webhookId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Webhook record
+          content:
+            application/json:
+              schema: { type: object }
+    patch:
+      tags: [Webhooks]
+      summary: Update Webhook Endpoint
+      operationId: updateWebhook
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - { name: webhookId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        '200':
+          description: Updated webhook
+          content:
+            application/json:
+              schema: { type: object }
+    delete:
+      tags: [Webhooks]
+      summary: Delete Webhook Endpoint
+      operationId: deleteWebhook
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - { name: webhookId, in: path, required: true, schema: { type: string } }
+      responses:
+        '204':
+          description: Deleted
+  /{dataset}/webhooks/{webhookId}/test:
+    post:
+      tags: [Webhooks]
+      summary: Test Webhook Endpoint
+      description: Sends a test event to the endpoint while in disabled state to verify reachability and signature handling.
+      operationId: testWebhook
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - { name: webhookId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Test delivery result
+          content:
+            application/json:
+              schema: { type: object }
+components:
+  securitySchemes:
+    AccessToken:
+      type: apiKey
+      in: query
+      name: access_token
+  parameters:
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      schema: { type: string }

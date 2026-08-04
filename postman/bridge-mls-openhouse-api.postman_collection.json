@@ -1,0 +1,190 @@
+{
+  "info": {
+    "_postman_id": "c67a8389-e001-4b6b-ae28-4579f44146c5",
+    "name": "Bridge RESO Web Agents OpenHouse API",
+    "description": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` \u2014\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:16:09.000Z",
+    "updatedAt": "2026-07-28T01:16:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c67a8389-e001-4b6b-ae28-4579f44146c5"
+  },
+  "item": [
+    {
+      "name": "{dataset}",
+      "item": [
+        {
+          "name": "OpenHouse",
+          "item": [
+            {
+              "name": "List Open Houses",
+              "id": "731dbce6-357e-4b05-9033-50ce5884f761",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/OpenHouse?$filter=<string>&$select=<string>&$orderby=<string>&$top=10&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "OpenHouse"
+                  ],
+                  "query": [
+                    {
+                      "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort expression (e.g. `ModificationTimestamp desc`).",
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.",
+                      "key": "$top",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Number of records to skip.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "53a2b75f-2fc2-4bc4-849d-7daad21009a8",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "description": "Query the OpenHouse entity set with OData query options."
+              },
+              "response": [
+                {
+                  "id": "e8b82903-9066-4fbb-8cd2-b04af41a90e4",
+                  "name": "OpenHouse collection",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/OpenHouse?$filter=<string>&$select=<string>&$orderby=<string>&$top=10&$skip=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "OpenHouse"
+                      ],
+                      "query": [
+                        {
+                          "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).",
+                          "key": "$filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "$select",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort expression (e.g. `ModificationTimestamp desc`).",
+                          "key": "$orderby",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.",
+                          "key": "$top",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Number of records to skip.",
+                          "key": "$skip",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:16:10.000Z",
+                  "updatedAt": "2026-07-28T01:16:10.000Z",
+                  "uid": "35240-e8b82903-9066-4fbb-8cd2-b04af41a90e4"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:10.000Z",
+              "updatedAt": "2026-07-28T01:16:10.000Z",
+              "uid": "35240-731dbce6-357e-4b05-9033-50ce5884f761"
+            }
+          ],
+          "id": "1ebbcc5b-2f35-4cf2-89e0-d3b58ec0b41b",
+          "createdAt": "2026-07-28T01:16:10.000Z",
+          "updatedAt": "2026-07-28T01:16:10.000Z",
+          "uid": "35240-1ebbcc5b-2f35-4cf2-89e0-d3b58ec0b41b"
+        }
+      ],
+      "id": "84b4f9d8-3606-483e-9c4c-3117dbb0cc1a",
+      "createdAt": "2026-07-28T01:16:10.000Z",
+      "updatedAt": "2026-07-28T01:16:10.000Z",
+      "uid": "35240-84b4f9d8-3606-483e-9c4c-3117dbb0cc1a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData"
+    }
+  ]
+}

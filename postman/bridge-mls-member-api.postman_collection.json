@@ -1,0 +1,301 @@
+{
+  "info": {
+    "_postman_id": "7708af38-a5ca-45a5-b80b-f0bacee53b62",
+    "name": "Bridge RESO Web Agents Member API",
+    "description": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` \u2014\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:16:06.000Z",
+    "updatedAt": "2026-07-28T01:16:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7708af38-a5ca-45a5-b80b-f0bacee53b62"
+  },
+  "item": [
+    {
+      "name": "{dataset}",
+      "item": [
+        {
+          "name": "Member",
+          "item": [
+            {
+              "name": "List Members",
+              "id": "c81d977b-6a8e-4d5d-b8a5-4c83935c1120",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Preferred page size (default 10, max 200).",
+                    "key": "maxpagesize",
+                    "value": "10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/Member?$filter=<string>&$select=<string>&$orderby=<string>&$top=10&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "Member"
+                  ],
+                  "query": [
+                    {
+                      "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort expression (e.g. `ModificationTimestamp desc`).",
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.",
+                      "key": "$top",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Number of records to skip.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "fbd65907-5ce1-44da-9b1d-d6fd7376d534",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "description": "Query the Member entity set (real estate agents) with OData query options."
+              },
+              "response": [
+                {
+                  "id": "41db53d4-bf2e-41f9-ac92-16bda2c50a5c",
+                  "name": "Member collection",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Preferred page size (default 10, max 200).",
+                        "key": "maxpagesize",
+                        "value": "10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/Member?$filter=<string>&$select=<string>&$orderby=<string>&$top=10&$skip=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "Member"
+                      ],
+                      "query": [
+                        {
+                          "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).",
+                          "key": "$filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "$select",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort expression (e.g. `ModificationTimestamp desc`).",
+                          "key": "$orderby",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.",
+                          "key": "$top",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Number of records to skip.",
+                          "key": "$skip",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"@odata.context\": \"<string>\",\n  \"value\": [\n    {\n      \"MemberKey\": \"<string>\",\n      \"MemberMlsId\": \"<string>\",\n      \"MemberFirstName\": \"<string>\",\n      \"MemberLastName\": \"<string>\",\n      \"MemberEmail\": \"<string>\",\n      \"MemberOfficePhone\": \"<string>\",\n      \"MemberType\": \"<string>\",\n      \"MemberStatus\": \"<string>\",\n      \"OfficeKey\": \"<string>\",\n      \"ModificationTimestamp\": \"<dateTime>\"\n    },\n    {\n      \"MemberKey\": \"<string>\",\n      \"MemberMlsId\": \"<string>\",\n      \"MemberFirstName\": \"<string>\",\n      \"MemberLastName\": \"<string>\",\n      \"MemberEmail\": \"<string>\",\n      \"MemberOfficePhone\": \"<string>\",\n      \"MemberType\": \"<string>\",\n      \"MemberStatus\": \"<string>\",\n      \"OfficeKey\": \"<string>\",\n      \"ModificationTimestamp\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:16:06.000Z",
+                  "updatedAt": "2026-07-28T01:16:06.000Z",
+                  "uid": "35240-41db53d4-bf2e-41f9-ac92-16bda2c50a5c"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:06.000Z",
+              "updatedAt": "2026-07-28T01:16:06.000Z",
+              "uid": "35240-c81d977b-6a8e-4d5d-b8a5-4c83935c1120"
+            }
+          ],
+          "id": "c1bcf4aa-28c8-462a-9640-ccab1c5f5b8d",
+          "createdAt": "2026-07-28T01:16:06.000Z",
+          "updatedAt": "2026-07-28T01:16:06.000Z",
+          "uid": "35240-c1bcf4aa-28c8-462a-9640-ccab1c5f5b8d"
+        },
+        {
+          "name": "Member('{memberKey}')",
+          "item": [
+            {
+              "name": "Get Member By Key",
+              "id": "f78ab024-fe9f-4997-9d55-9c79bf41d393",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/Member('{{memberKey}}')",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "Member('{{memberKey}}')"
+                  ],
+                  "variable": [
+                    {
+                      "id": "61f06bdf-8109-4096-8061-21215673129f",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "description": "Retrieve a single Member record by `MemberKey`."
+              },
+              "response": [
+                {
+                  "id": "9ea85ea7-fdcf-4c20-bf11-d8c1a002f1b1",
+                  "name": "Member record",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/Member('{{memberKey}}')",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "Member('{{memberKey}}')"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"MemberKey\": \"<string>\",\n  \"MemberMlsId\": \"<string>\",\n  \"MemberFirstName\": \"<string>\",\n  \"MemberLastName\": \"<string>\",\n  \"MemberEmail\": \"<string>\",\n  \"MemberOfficePhone\": \"<string>\",\n  \"MemberType\": \"<string>\",\n  \"MemberStatus\": \"<string>\",\n  \"OfficeKey\": \"<string>\",\n  \"ModificationTimestamp\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:16:06.000Z",
+                  "updatedAt": "2026-07-28T01:16:06.000Z",
+                  "uid": "35240-9ea85ea7-fdcf-4c20-bf11-d8c1a002f1b1"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:06.000Z",
+              "updatedAt": "2026-07-28T01:16:06.000Z",
+              "uid": "35240-f78ab024-fe9f-4997-9d55-9c79bf41d393"
+            }
+          ],
+          "id": "6e0e5ea3-3d29-460d-9b6e-a30c13ef9330",
+          "createdAt": "2026-07-28T01:16:06.000Z",
+          "updatedAt": "2026-07-28T01:16:06.000Z",
+          "uid": "35240-6e0e5ea3-3d29-460d-9b6e-a30c13ef9330"
+        }
+      ],
+      "id": "32e72ee1-8f27-444c-a5d2-0480b9571804",
+      "createdAt": "2026-07-28T01:16:06.000Z",
+      "updatedAt": "2026-07-28T01:16:06.000Z",
+      "uid": "35240-32e72ee1-8f27-444c-a5d2-0480b9571804"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData"
+    },
+    {
+      "key": "memberKey",
+      "value": "<string>"
+    }
+  ]
+}

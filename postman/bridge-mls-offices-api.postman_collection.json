@@ -1,0 +1,135 @@
+{
+  "info": {
+    "_postman_id": "f9e6f1d8-d453-4425-aa69-200a5831a8f0",
+    "name": "Bridge RESO Web Agents Offices API",
+    "description": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` \u2014\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:16:08.000Z",
+    "updatedAt": "2026-07-28T01:16:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f9e6f1d8-d453-4425-aa69-200a5831a8f0"
+  },
+  "item": [
+    {
+      "name": "{dataset}",
+      "item": [
+        {
+          "name": "offices",
+          "item": [
+            {
+              "name": "List Offices",
+              "id": "8558cd22-dbb3-4e03-b238-86b976a79130",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/offices",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "offices"
+                  ],
+                  "variable": [
+                    {
+                      "id": "311d195c-e58c-4221-9a62-2ff38bf1efea",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "754a9f7a-7007-4a6a-a1d0-e2d5596c54a3",
+                  "name": "Office collection",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/offices",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "offices"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:16:09.000Z",
+                  "updatedAt": "2026-07-28T01:16:09.000Z",
+                  "uid": "35240-754a9f7a-7007-4a6a-a1d0-e2d5596c54a3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:09.000Z",
+              "updatedAt": "2026-07-28T01:16:09.000Z",
+              "uid": "35240-8558cd22-dbb3-4e03-b238-86b976a79130"
+            }
+          ],
+          "id": "86f71d4f-7435-4dbe-8163-946e9f69f784",
+          "createdAt": "2026-07-28T01:16:09.000Z",
+          "updatedAt": "2026-07-28T01:16:09.000Z",
+          "uid": "35240-86f71d4f-7435-4dbe-8163-946e9f69f784"
+        }
+      ],
+      "id": "5622c352-a3e4-4676-8fd8-716275c9bda6",
+      "createdAt": "2026-07-28T01:16:09.000Z",
+      "updatedAt": "2026-07-28T01:16:09.000Z",
+      "uid": "35240-5622c352-a3e4-4676-8fd8-716275c9bda6"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData"
+    }
+  ]
+}

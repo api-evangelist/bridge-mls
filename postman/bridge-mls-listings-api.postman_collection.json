@@ -1,0 +1,287 @@
+{
+  "info": {
+    "_postman_id": "7ae02468-7df4-40a1-a3a5-6a65299f8656",
+    "name": "Bridge RESO Web Agents Listings API",
+    "description": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` \u2014\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:16:03.000Z",
+    "updatedAt": "2026-07-28T01:16:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7ae02468-7df4-40a1-a3a5-6a65299f8656"
+  },
+  "item": [
+    {
+      "name": "{dataset}",
+      "item": [
+        {
+          "name": "listings",
+          "item": [
+            {
+              "name": "{listingId}",
+              "item": [
+                {
+                  "name": "Get Listing",
+                  "id": "d5ebe524-dc46-475e-953f-fd0dbaf593b4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/listings/:listingId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "listings",
+                        ":listingId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f2ef871d-04ac-40e8-a9da-44d9883e211f",
+                          "key": "dataset",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        },
+                        {
+                          "id": "3c7bf346-aeaf-418a-a864-b577f4236d67",
+                          "key": "listingId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "7a618c04-474e-4724-b30c-b2a790aaee8a",
+                      "name": "Listing record",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:dataset/listings/:listingId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":dataset",
+                            "listings",
+                            ":listingId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataset"
+                            },
+                            {
+                              "key": "listingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:16:04.000Z",
+                      "updatedAt": "2026-07-28T01:16:04.000Z",
+                      "uid": "35240-7a618c04-474e-4724-b30c-b2a790aaee8a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:16:04.000Z",
+                  "updatedAt": "2026-07-28T01:16:04.000Z",
+                  "uid": "35240-d5ebe524-dc46-475e-953f-fd0dbaf593b4"
+                }
+              ],
+              "id": "966d9f5b-d801-4f68-899d-0e3a20cfdac7",
+              "createdAt": "2026-07-28T01:16:04.000Z",
+              "updatedAt": "2026-07-28T01:16:04.000Z",
+              "uid": "35240-966d9f5b-d801-4f68-899d-0e3a20cfdac7"
+            },
+            {
+              "name": "List Listings",
+              "id": "c10c218a-2f0c-4a6f-b848-4d832de984d7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/listings?limit=10&offset=<integer>&sortBy=<string>&order=desc&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "listings"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "7370ebd3-6116-4967-9353-d7903c79a4e7",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns listings (Properties) for the dataset with RESO field naming."
+              },
+              "response": [
+                {
+                  "id": "b1714ba3-1aa6-47f7-850c-3df3cb43b8de",
+                  "name": "Listing collection",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/listings?limit=10&offset=<integer>&sortBy=<string>&order=desc&fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "listings"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "sortBy",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "order",
+                          "value": "desc"
+                        },
+                        {
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"status\": \"<integer>\",\n  \"total\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:16:04.000Z",
+                  "updatedAt": "2026-07-28T01:16:04.000Z",
+                  "uid": "35240-b1714ba3-1aa6-47f7-850c-3df3cb43b8de"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:04.000Z",
+              "updatedAt": "2026-07-28T01:16:04.000Z",
+              "uid": "35240-c10c218a-2f0c-4a6f-b848-4d832de984d7"
+            }
+          ],
+          "id": "291dee38-89a7-48e6-b246-53f14016b3e1",
+          "createdAt": "2026-07-28T01:16:04.000Z",
+          "updatedAt": "2026-07-28T01:16:04.000Z",
+          "uid": "35240-291dee38-89a7-48e6-b246-53f14016b3e1"
+        }
+      ],
+      "id": "aa43742a-c00d-4be3-beb0-0664ba29a2df",
+      "createdAt": "2026-07-28T01:16:04.000Z",
+      "updatedAt": "2026-07-28T01:16:04.000Z",
+      "uid": "35240-aa43742a-c00d-4be3-beb0-0664ba29a2df"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData"
+    }
+  ]
+}

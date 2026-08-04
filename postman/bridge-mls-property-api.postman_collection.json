@@ -1,0 +1,406 @@
+{
+  "info": {
+    "_postman_id": "8f24866a-3a8d-4316-bf2d-15ca3a208a0c",
+    "name": "Bridge RESO Web Agents Property API",
+    "description": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` \u2014\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:16:12.000Z",
+    "updatedAt": "2026-07-28T01:16:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8f24866a-3a8d-4316-bf2d-15ca3a208a0c"
+  },
+  "item": [
+    {
+      "name": "{dataset}",
+      "item": [
+        {
+          "name": "Property",
+          "item": [
+            {
+              "name": "List Properties",
+              "id": "de4fe3cb-bfac-4a9c-a32a-602aa07a59ee",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Preferred page size (default 10, max 200).",
+                    "key": "maxpagesize",
+                    "value": "10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/Property?$filter=<string>&$select=<string>&unselect=<string>&$expand=<string>&$orderby=<string>&$top=10&$skip=<integer>&$count=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "Property"
+                  ],
+                  "query": [
+                    {
+                      "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Bridge extension \u2014 comma-separated list of fields to exclude (returns all other fields).",
+                      "key": "unselect",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand.",
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort expression (e.g. `ModificationTimestamp desc`).",
+                      "key": "$orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.",
+                      "key": "$top",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Number of records to skip.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Include `@odata.count` in the response.",
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "14887e27-725c-4da5-be81-0198227d77d8",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "description": "Query the Property entity set with OData query options. Returns RESO-normalized listing records including embedded Media."
+              },
+              "response": [
+                {
+                  "id": "7db6c42e-ad17-4c79-b3d9-ea3d284e0924",
+                  "name": "Property collection",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Preferred page size (default 10, max 200).",
+                        "key": "maxpagesize",
+                        "value": "10"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/Property?$filter=<string>&$select=<string>&unselect=<string>&$expand=<string>&$orderby=<string>&$top=10&$skip=<integer>&$count=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "Property"
+                      ],
+                      "query": [
+                        {
+                          "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).",
+                          "key": "$filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "$select",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Bridge extension \u2014 comma-separated list of fields to exclude (returns all other fields).",
+                          "key": "unselect",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand.",
+                          "key": "$expand",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort expression (e.g. `ModificationTimestamp desc`).",
+                          "key": "$orderby",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.",
+                          "key": "$top",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Number of records to skip.",
+                          "key": "$skip",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Include `@odata.count` in the response.",
+                          "key": "$count",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"@odata.context\": \"<string>\",\n  \"@odata.count\": \"<integer>\",\n  \"@odata.nextLink\": \"<string>\",\n  \"value\": [\n    {\n      \"ListingKey\": \"<string>\",\n      \"ListingId\": \"<string>\",\n      \"ListPrice\": \"<number>\",\n      \"StandardStatus\": \"Closed\",\n      \"PropertyType\": \"<string>\",\n      \"PropertySubType\": \"<string>\",\n      \"UnparsedAddress\": \"<string>\",\n      \"StreetNumber\": \"<string>\",\n      \"StreetName\": \"<string>\",\n      \"City\": \"<string>\",\n      \"StateOrProvince\": \"<string>\",\n      \"PostalCode\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Latitude\": \"<number>\",\n      \"Longitude\": \"<number>\",\n      \"BedroomsTotal\": \"<integer>\",\n      \"BathroomsTotalInteger\": \"<integer>\",\n      \"LivingArea\": \"<number>\",\n      \"LotSizeSquareFeet\": \"<number>\",\n      \"YearBuilt\": \"<integer>\",\n      \"PublicRemarks\": \"<string>\",\n      \"ListAgentKey\": \"<string>\",\n      \"ListOfficeKey\": \"<string>\",\n      \"ModificationTimestamp\": \"<dateTime>\",\n      \"OnMarketDate\": \"<date>\",\n      \"CloseDate\": \"<date>\",\n      \"Media\": [\n        {\n          \"MediaKey\": \"<string>\",\n          \"MediaURL\": \"<uri>\",\n          \"MediaCategory\": \"<string>\",\n          \"MediaType\": \"<string>\",\n          \"Order\": \"<integer>\",\n          \"ImageWidth\": \"<integer>\",\n          \"ImageHeight\": \"<integer>\",\n          \"ResourceRecordKey\": \"<string>\",\n          \"ModificationTimestamp\": \"<dateTime>\"\n        },\n        {\n          \"MediaKey\": \"<string>\",\n          \"MediaURL\": \"<uri>\",\n          \"MediaCategory\": \"<string>\",\n          \"MediaType\": \"<string>\",\n          \"Order\": \"<integer>\",\n          \"ImageWidth\": \"<integer>\",\n          \"ImageHeight\": \"<integer>\",\n          \"ResourceRecordKey\": \"<string>\",\n          \"ModificationTimestamp\": \"<dateTime>\"\n        }\n      ]\n    },\n    {\n      \"ListingKey\": \"<string>\",\n      \"ListingId\": \"<string>\",\n      \"ListPrice\": \"<number>\",\n      \"StandardStatus\": \"ComingSoon\",\n      \"PropertyType\": \"<string>\",\n      \"PropertySubType\": \"<string>\",\n      \"UnparsedAddress\": \"<string>\",\n      \"StreetNumber\": \"<string>\",\n      \"StreetName\": \"<string>\",\n      \"City\": \"<string>\",\n      \"StateOrProvince\": \"<string>\",\n      \"PostalCode\": \"<string>\",\n      \"Country\": \"<string>\",\n      \"Latitude\": \"<number>\",\n      \"Longitude\": \"<number>\",\n      \"BedroomsTotal\": \"<integer>\",\n      \"BathroomsTotalInteger\": \"<integer>\",\n      \"LivingArea\": \"<number>\",\n      \"LotSizeSquareFeet\": \"<number>\",\n      \"YearBuilt\": \"<integer>\",\n      \"PublicRemarks\": \"<string>\",\n      \"ListAgentKey\": \"<string>\",\n      \"ListOfficeKey\": \"<string>\",\n      \"ModificationTimestamp\": \"<dateTime>\",\n      \"OnMarketDate\": \"<date>\",\n      \"CloseDate\": \"<date>\",\n      \"Media\": [\n        {\n          \"MediaKey\": \"<string>\",\n          \"MediaURL\": \"<uri>\",\n          \"MediaCategory\": \"<string>\",\n          \"MediaType\": \"<string>\",\n          \"Order\": \"<integer>\",\n          \"ImageWidth\": \"<integer>\",\n          \"ImageHeight\": \"<integer>\",\n          \"ResourceRecordKey\": \"<string>\",\n          \"ModificationTimestamp\": \"<dateTime>\"\n        },\n        {\n          \"MediaKey\": \"<string>\",\n          \"MediaURL\": \"<uri>\",\n          \"MediaCategory\": \"<string>\",\n          \"MediaType\": \"<string>\",\n          \"Order\": \"<integer>\",\n          \"ImageWidth\": \"<integer>\",\n          \"ImageHeight\": \"<integer>\",\n          \"ResourceRecordKey\": \"<string>\",\n          \"ModificationTimestamp\": \"<dateTime>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:16:13.000Z",
+                  "updatedAt": "2026-07-28T01:16:13.000Z",
+                  "uid": "35240-7db6c42e-ad17-4c79-b3d9-ea3d284e0924"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:13.000Z",
+              "updatedAt": "2026-07-28T01:16:13.000Z",
+              "uid": "35240-de4fe3cb-bfac-4a9c-a32a-602aa07a59ee"
+            }
+          ],
+          "id": "90548782-ddd2-4859-a1dc-25d404d1908c",
+          "createdAt": "2026-07-28T01:16:13.000Z",
+          "updatedAt": "2026-07-28T01:16:13.000Z",
+          "uid": "35240-90548782-ddd2-4859-a1dc-25d404d1908c"
+        },
+        {
+          "name": "Property('{listingKey}')",
+          "item": [
+            {
+              "name": "Get Property By Listing Key",
+              "id": "c37cea1a-135b-490d-ae11-8f62779c7842",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/Property('{{listingKey}}')?$select=<string>&$expand=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "Property('{{listingKey}}')"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand.",
+                      "key": "$expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "21349a78-54f5-47de-9bad-1f19fed274f6",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "description": "Retrieve a single Property record by its `ListingKey`."
+              },
+              "response": [
+                {
+                  "id": "53a29378-9055-4ad0-8a9d-9fdb47407abf",
+                  "name": "Property record",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/Property('{{listingKey}}')?$select=<string>&$expand=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "Property('{{listingKey}}')"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "$select",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand.",
+                          "key": "$expand",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ListingKey\": \"<string>\",\n  \"ListingId\": \"<string>\",\n  \"ListPrice\": \"<number>\",\n  \"StandardStatus\": \"Expired\",\n  \"PropertyType\": \"<string>\",\n  \"PropertySubType\": \"<string>\",\n  \"UnparsedAddress\": \"<string>\",\n  \"StreetNumber\": \"<string>\",\n  \"StreetName\": \"<string>\",\n  \"City\": \"<string>\",\n  \"StateOrProvince\": \"<string>\",\n  \"PostalCode\": \"<string>\",\n  \"Country\": \"<string>\",\n  \"Latitude\": \"<number>\",\n  \"Longitude\": \"<number>\",\n  \"BedroomsTotal\": \"<integer>\",\n  \"BathroomsTotalInteger\": \"<integer>\",\n  \"LivingArea\": \"<number>\",\n  \"LotSizeSquareFeet\": \"<number>\",\n  \"YearBuilt\": \"<integer>\",\n  \"PublicRemarks\": \"<string>\",\n  \"ListAgentKey\": \"<string>\",\n  \"ListOfficeKey\": \"<string>\",\n  \"ModificationTimestamp\": \"<dateTime>\",\n  \"OnMarketDate\": \"<date>\",\n  \"CloseDate\": \"<date>\",\n  \"Media\": [\n    {\n      \"MediaKey\": \"<string>\",\n      \"MediaURL\": \"<uri>\",\n      \"MediaCategory\": \"<string>\",\n      \"MediaType\": \"<string>\",\n      \"Order\": \"<integer>\",\n      \"ImageWidth\": \"<integer>\",\n      \"ImageHeight\": \"<integer>\",\n      \"ResourceRecordKey\": \"<string>\",\n      \"ModificationTimestamp\": \"<dateTime>\"\n    },\n    {\n      \"MediaKey\": \"<string>\",\n      \"MediaURL\": \"<uri>\",\n      \"MediaCategory\": \"<string>\",\n      \"MediaType\": \"<string>\",\n      \"Order\": \"<integer>\",\n      \"ImageWidth\": \"<integer>\",\n      \"ImageHeight\": \"<integer>\",\n      \"ResourceRecordKey\": \"<string>\",\n      \"ModificationTimestamp\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:16:13.000Z",
+                  "updatedAt": "2026-07-28T01:16:13.000Z",
+                  "uid": "35240-53a29378-9055-4ad0-8a9d-9fdb47407abf"
+                },
+                {
+                  "id": "0176ff36-daac-4974-b749-8ac4a7bd1f7d",
+                  "name": "Not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/Property('{{listingKey}}')?$select=<string>&$expand=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "Property('{{listingKey}}')"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "$select",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand.",
+                          "key": "$expand",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T01:16:13.000Z",
+                  "updatedAt": "2026-07-28T01:16:13.000Z",
+                  "uid": "35240-0176ff36-daac-4974-b749-8ac4a7bd1f7d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:13.000Z",
+              "updatedAt": "2026-07-28T01:16:13.000Z",
+              "uid": "35240-c37cea1a-135b-490d-ae11-8f62779c7842"
+            }
+          ],
+          "id": "dcef3089-df7f-481f-a6e0-5750f7a44bef",
+          "createdAt": "2026-07-28T01:16:13.000Z",
+          "updatedAt": "2026-07-28T01:16:13.000Z",
+          "uid": "35240-dcef3089-df7f-481f-a6e0-5750f7a44bef"
+        }
+      ],
+      "id": "ad313fb9-67ed-4153-a1ae-c432a2e11d50",
+      "createdAt": "2026-07-28T01:16:13.000Z",
+      "updatedAt": "2026-07-28T01:16:13.000Z",
+      "uid": "35240-ad313fb9-67ed-4153-a1ae-c432a2e11d50"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData"
+    },
+    {
+      "key": "listingKey",
+      "value": "<string>"
+    }
+  ]
+}

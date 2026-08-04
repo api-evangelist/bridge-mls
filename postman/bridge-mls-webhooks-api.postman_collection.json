@@ -1,0 +1,677 @@
+{
+  "info": {
+    "_postman_id": "94186a3c-18cc-4f42-8497-4a3da55be8ad",
+    "name": "Bridge RESO Web Agents Webhooks API",
+    "description": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` \u2014\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:16:13.000Z",
+    "updatedAt": "2026-07-28T01:16:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-94186a3c-18cc-4f42-8497-4a3da55be8ad"
+  },
+  "item": [
+    {
+      "name": "{dataset}",
+      "item": [
+        {
+          "name": "webhooks",
+          "item": [
+            {
+              "name": "{webhookId}",
+              "item": [
+                {
+                  "name": "test",
+                  "item": [
+                    {
+                      "name": "Test Webhook Endpoint",
+                      "id": "e99be191-8a8e-4e78-9f5a-3c2fa7a26404",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:dataset/webhooks/:webhookId/test",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":dataset",
+                            "webhooks",
+                            ":webhookId",
+                            "test"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7ebcac8e-3bb9-42c0-86fa-4c060ae27273",
+                              "key": "dataset",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "07a0232f-1520-4383-b139-d8c303684303",
+                              "key": "webhookId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Sends a test event to the endpoint while in disabled state to verify reachability and signature handling."
+                      },
+                      "response": [
+                        {
+                          "id": "23dced7a-325c-4ed1-9495-dad18b9d5b5a",
+                          "name": "Test delivery result",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/:dataset/webhooks/:webhookId/test",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                ":dataset",
+                                "webhooks",
+                                ":webhookId",
+                                "test"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "dataset"
+                                },
+                                {
+                                  "key": "webhookId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T01:16:14.000Z",
+                          "updatedAt": "2026-07-28T01:16:14.000Z",
+                          "uid": "35240-23dced7a-325c-4ed1-9495-dad18b9d5b5a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:16:14.000Z",
+                      "updatedAt": "2026-07-28T01:16:14.000Z",
+                      "uid": "35240-e99be191-8a8e-4e78-9f5a-3c2fa7a26404"
+                    }
+                  ],
+                  "id": "27c3778c-e1c7-4006-91f3-0307832908e3",
+                  "createdAt": "2026-07-28T01:16:14.000Z",
+                  "updatedAt": "2026-07-28T01:16:14.000Z",
+                  "uid": "35240-27c3778c-e1c7-4006-91f3-0307832908e3"
+                },
+                {
+                  "name": "Get Webhook Endpoint",
+                  "id": "36086863-2854-4dfd-8119-e3fac3995a14",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/webhooks/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "webhooks",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "23f8c1bd-049e-48c4-bf08-eb6ad8cb661c",
+                          "key": "dataset",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        },
+                        {
+                          "id": "91bc8339-e6df-4982-a057-4ffceda98078",
+                          "key": "webhookId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "e2af8368-7348-4e63-be97-d180afbe9497",
+                      "name": "Webhook record",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:dataset/webhooks/:webhookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":dataset",
+                            "webhooks",
+                            ":webhookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataset"
+                            },
+                            {
+                              "key": "webhookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:16:14.000Z",
+                      "updatedAt": "2026-07-28T01:16:14.000Z",
+                      "uid": "35240-e2af8368-7348-4e63-be97-d180afbe9497"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:16:14.000Z",
+                  "updatedAt": "2026-07-28T01:16:14.000Z",
+                  "uid": "35240-36086863-2854-4dfd-8119-e3fac3995a14"
+                },
+                {
+                  "name": "Update Webhook Endpoint",
+                  "id": "3bb27aba-a3c3-4345-8b2a-d16d7d45ccdc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/webhooks/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "webhooks",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "36cf7e33-1e4c-47e0-ae99-fbee0523df80",
+                          "key": "dataset",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        },
+                        {
+                          "id": "045cedb1-93f6-428d-98d5-da9da161ae42",
+                          "key": "webhookId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d0de630a-3110-4f0b-987c-53191bcf36a0",
+                      "name": "Updated webhook",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:dataset/webhooks/:webhookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":dataset",
+                            "webhooks",
+                            ":webhookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataset"
+                            },
+                            {
+                              "key": "webhookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T01:16:14.000Z",
+                      "updatedAt": "2026-07-28T01:16:14.000Z",
+                      "uid": "35240-d0de630a-3110-4f0b-987c-53191bcf36a0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:16:14.000Z",
+                  "updatedAt": "2026-07-28T01:16:14.000Z",
+                  "uid": "35240-3bb27aba-a3c3-4345-8b2a-d16d7d45ccdc"
+                },
+                {
+                  "name": "Delete Webhook Endpoint",
+                  "id": "111ef25a-cfca-44c6-b850-28dc6a0e8437",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/webhooks/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "webhooks",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3c7251d2-833d-46b7-b55f-ba928d20d510",
+                          "key": "dataset",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        },
+                        {
+                          "id": "51fac5c5-7d17-4741-bbc2-094d53253ce7",
+                          "key": "webhookId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "7a2186ed-5b95-442b-ad6e-0208497f9dd3",
+                      "name": "Deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/:dataset/webhooks/:webhookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":dataset",
+                            "webhooks",
+                            ":webhookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataset"
+                            },
+                            {
+                              "key": "webhookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:16:14.000Z",
+                      "updatedAt": "2026-07-28T01:16:14.000Z",
+                      "uid": "35240-7a2186ed-5b95-442b-ad6e-0208497f9dd3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:16:14.000Z",
+                  "updatedAt": "2026-07-28T01:16:14.000Z",
+                  "uid": "35240-111ef25a-cfca-44c6-b850-28dc6a0e8437"
+                }
+              ],
+              "id": "e8dc915b-2e80-4091-aa03-19d95c576051",
+              "createdAt": "2026-07-28T01:16:14.000Z",
+              "updatedAt": "2026-07-28T01:16:14.000Z",
+              "uid": "35240-e8dc915b-2e80-4091-aa03-19d95c576051"
+            },
+            {
+              "name": "List Webhook Endpoints",
+              "id": "a9a8b784-7d42-43ec-9078-bed1681e52ad",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "webhooks"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fb46e73f-ece5-40ea-bcdc-a9da444ded11",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "49191b5f-6a3b-4368-93c4-467c816cfe26",
+                  "name": "Webhook collection",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "webhooks"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:16:14.000Z",
+                  "updatedAt": "2026-07-28T01:16:14.000Z",
+                  "uid": "35240-49191b5f-6a3b-4368-93c4-467c816cfe26"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:14.000Z",
+              "updatedAt": "2026-07-28T01:16:14.000Z",
+              "uid": "35240-a9a8b784-7d42-43ec-9078-bed1681e52ad"
+            },
+            {
+              "name": "Create Webhook Endpoint",
+              "id": "3cbca6fc-c9bb-4c11-a97e-291b8d291401",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"property.created\",\n    \"member.updated\"\n  ],\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "webhooks"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a2bf5def-f766-481c-89bc-3be327218efe",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7eaeef65-faa6-4a87-9dca-a44dd8e8f4b3",
+                  "name": "Webhook created (disabled state)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"property.created\",\n    \"member.updated\"\n  ],\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "webhooks"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"status\": \"active\",\n  \"publicKey\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:16:14.000Z",
+                  "updatedAt": "2026-07-28T01:16:14.000Z",
+                  "uid": "35240-7eaeef65-faa6-4a87-9dca-a44dd8e8f4b3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:14.000Z",
+              "updatedAt": "2026-07-28T01:16:14.000Z",
+              "uid": "35240-3cbca6fc-c9bb-4c11-a97e-291b8d291401"
+            }
+          ],
+          "id": "ba83bb13-d168-4282-a066-b27a3ba42cf7",
+          "createdAt": "2026-07-28T01:16:14.000Z",
+          "updatedAt": "2026-07-28T01:16:14.000Z",
+          "uid": "35240-ba83bb13-d168-4282-a066-b27a3ba42cf7"
+        }
+      ],
+      "id": "6318efae-3b3a-4252-b93a-a2fb934d7946",
+      "createdAt": "2026-07-28T01:16:14.000Z",
+      "updatedAt": "2026-07-28T01:16:14.000Z",
+      "uid": "35240-6318efae-3b3a-4252-b93a-a2fb934d7946"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData"
+    }
+  ]
+}

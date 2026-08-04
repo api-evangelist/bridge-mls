@@ -1,0 +1,180 @@
+{
+  "info": {
+    "_postman_id": "0c01ad10-bbe9-40eb-b223-dbc4fadc0390",
+    "name": "Bridge RESO Web Agents Media API",
+    "description": "RESO Platinum-certified Web API for MLS listing data, served by Bridge (a Zillow Group company).\nData is normalized to the RESO Data Dictionary and queryable via OData 4.0. Bridge interprets\nOData `$top` as page size (default 10, max 200 via the `maxpagesize` header) and extends the spec\nwith an `unselect` parameter that returns all fields except those listed.\n\nEach request is scoped to a `{dataset}` (the MLS dataset code) and must carry an `access_token` \u2014\neither as a query parameter or via the `Authorization: Bearer` header.\n\n\nContact Support:\n Name: Bridge Interactive Support\n Email: support@bridgeinteractive.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:16:05.000Z",
+    "updatedAt": "2026-07-28T01:16:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0c01ad10-bbe9-40eb-b223-dbc4fadc0390"
+  },
+  "item": [
+    {
+      "name": "{dataset}",
+      "item": [
+        {
+          "name": "Media",
+          "item": [
+            {
+              "name": "List Media",
+              "id": "4d24ec58-1b7a-4fc6-ae1a-407f0db94307",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:dataset/Media?$filter=<string>&$select=<string>&$top=10&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":dataset",
+                    "Media"
+                  ],
+                  "query": [
+                    {
+                      "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return.",
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.",
+                      "key": "$top",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Number of records to skip.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "ce89ad69-dbfe-4d82-8f16-6b3b1145bda2",
+                      "key": "dataset",
+                      "value": "<string>",
+                      "description": "(Required) MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+                    }
+                  ]
+                },
+                "description": "Query the Media entity set independently of Property. Media is also returned embedded on Property records."
+              },
+              "response": [
+                {
+                  "id": "0bea61c5-3694-45d8-97e2-d79dab5252a3",
+                  "name": "Media collection",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:dataset/Media?$filter=<string>&$select=<string>&$top=10&$skip=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":dataset",
+                        "Media"
+                      ],
+                      "query": [
+                        {
+                          "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).",
+                          "key": "$filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "$select",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.",
+                          "key": "$top",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Number of records to skip.",
+                          "key": "$skip",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataset"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T01:16:05.000Z",
+                  "updatedAt": "2026-07-28T01:16:05.000Z",
+                  "uid": "35240-0bea61c5-3694-45d8-97e2-d79dab5252a3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:16:05.000Z",
+              "updatedAt": "2026-07-28T01:16:05.000Z",
+              "uid": "35240-4d24ec58-1b7a-4fc6-ae1a-407f0db94307"
+            }
+          ],
+          "id": "4ee9c32a-c0ba-4426-b0b3-158676acdd7d",
+          "createdAt": "2026-07-28T01:16:05.000Z",
+          "updatedAt": "2026-07-28T01:16:05.000Z",
+          "uid": "35240-4ee9c32a-c0ba-4426-b0b3-158676acdd7d"
+        }
+      ],
+      "id": "35793a2c-865c-4ed0-acd3-45a19ba31c44",
+      "createdAt": "2026-07-28T01:16:05.000Z",
+      "updatedAt": "2026-07-28T01:16:05.000Z",
+      "uid": "35240-35793a2c-865c-4ed0-acd3-45a19ba31c44"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bridgedataoutput.com/api/v2/OData"
+    }
+  ]
+}
