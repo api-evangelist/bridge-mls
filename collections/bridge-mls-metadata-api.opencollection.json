@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bridge RESO Web Agents Metadata API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Service Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              }
+            ]
+          },
+          "docs": "Returns the OData service document listing all entity sets available in the dataset."
+        },
+        {
+          "info": {
+            "name": "Get CSDL Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/$metadata",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              }
+            ]
+          },
+          "docs": "Returns the dataset's OData CSDL ($metadata) XML describing all entity types, properties, and navigation properties."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

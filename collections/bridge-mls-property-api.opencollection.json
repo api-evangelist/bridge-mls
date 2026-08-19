@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bridge RESO Web Agents Property API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Property",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/Property",
+            "headers": [
+              {
+                "name": "maxpagesize",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`)."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "unselect",
+                "value": "",
+                "type": "query",
+                "description": "Bridge extension — comma-separated list of fields to exclude (returns all other fields)."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand."
+              },
+              {
+                "name": "$orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort expression (e.g. `ModificationTimestamp desc`)."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "Include `@odata.count` in the response."
+              }
+            ]
+          },
+          "docs": "Query the Property entity set with OData query options. Returns RESO-normalized listing records including embedded Media."
+        },
+        {
+          "info": {
+            "name": "Get Property By Listing Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bridgedataoutput.com/api/v2/OData/:dataset/Property(':listingKey')",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "path",
+                "description": "MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`)."
+              },
+              {
+                "name": "listingKey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand."
+              }
+            ]
+          },
+          "docs": "Retrieve a single Property record by its `ListingKey`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
