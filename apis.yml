@@ -4,6 +4,11 @@ apis:
 - aid: bridge-mls:bridge-webhooks-api
   name: Bridge Webhooks API
   tags:
+  - Real-Estate
+  - Webhook
+  - Event
+  - Real-Time
+  tags_raw:
   - Real Estate
   - Webhooks
   - Events
@@ -23,6 +28,11 @@ apis:
 - aid: bridge-mls:zillow-group-data-api
   name: Zillow Group Data (ZG Data) API
   tags:
+  - Real-Estate
+  - Public Records
+  - Property Data
+  - Parcels
+  tags_raw:
   - Real Estate
   - Public Records
   - Property Data
@@ -236,6 +246,8 @@ apis:
   humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
   baseURL: https://api.bridgedataoutput.com/api/v2/OData
   tags:
+  - Open Houses
+  tags_raw:
   - OpenHouses
   properties:
   - type: OpenAPI
@@ -284,6 +296,8 @@ apis:
   humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
   baseURL: https://api.bridgedataoutput.com/api/v2/OData
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
@@ -304,6 +318,14 @@ apis:
     url: https://bridgedataoutput.com/docs/platform/API/bridge
 name: Bridge
 tags:
+  - Real-Estate
+  - MLS
+  - RESO
+  - Listings
+  - Property Data
+  - Brokers
+  - Data Distribution
+tags_raw:
   - Real Estate
   - MLS
   - RESO
