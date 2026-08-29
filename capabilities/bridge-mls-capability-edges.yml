@@ -1,0 +1,45 @@
+slug: bridge-mls
+provider: Bridge
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Real Estate
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Listings
+  spec_file: bridge-mls-listings-api-openapi.yml
+  capability_id: BC-4960.30
+  capability_id_l1: BC-4960
+  capability_name: Listing Data & MLS Management
+  confidence: 0.85
+  evidence: GET /{dataset}/listings listListings 'List Listings'; 'MLS data distribution service used
+    by Multiple Listing Services and brokerages'
+  reason: Querying normalized MLS listing records is listing data / MLS management for brokerage operations.
+- tag: Property
+  spec_file: bridge-mls-property-api-openapi.yml
+  capability_id: BC-4960.30
+  capability_id_l1: BC-4960
+  capability_name: Listing Data & MLS Management
+  confidence: 0.85
+  evidence: 'GET /{dataset}/Property  listProperties  List Properties; GET /{dataset}/Property(''{listingKey}'')  getProperty  Get
+    Property By Listing Key; schemas: Property, Media, PropertyCollection'
+  reason: Read access to MLS listing records keyed by ListingKey, normalized to the RESO Data Dictionary
+    — this is squarely MLS/portal listing data capture and syndication, the core of Listing Data & MLS
+    Management.
+- tag: Media
+  spec_file: bridge-mls-media-api-openapi.yml
+  capability_id: BC-4960.30
+  capability_id_l1: BC-4960
+  capability_name: Listing Data & MLS Management
+  confidence: 0.8
+  evidence: GET /{dataset}/Media listMedia 'List Media'; sub-capability covers 'listing data including
+    capture, media, syndication'
+  reason: Media here is listing photography/media attached to MLS listings, explicitly part of MLS listing
+    data management.

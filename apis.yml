@@ -362,6 +362,9 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bridge-mls.png
 access: 3rd-Party
 common:
+  - type: CapabilityMap
+    url: capabilities/bridge-mls-capability-edges.yml
+    name: Bridge Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/bridge/overview
   - type: AgenticAccess
