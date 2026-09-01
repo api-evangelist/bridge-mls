@@ -246,7 +246,7 @@ apis:
   humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
   baseURL: https://api.bridgedataoutput.com/api/v2/OData
   tags:
-  - OpenHouses
+  - Open Houses
   tags_raw:
   - OpenHouses
   properties:
