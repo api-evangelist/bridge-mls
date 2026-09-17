@@ -240,32 +240,6 @@ apis:
     url: json-ld/bridge-mls-context.jsonld
   - type: Documentation
     url: https://bridgedataoutput.com/docs/platform/API/bridge
-- aid: bridge-mls:bridge-mls-openhouses-api
-  name: Bridge OpenHouses API
-  description: The OpenHouses API from Bridge — 1 operation(s) for openhouses.
-  humanURL: https://bridgedataoutput.com/docs/platform/API/reso-web-api
-  baseURL: https://api.bridgedataoutput.com/api/v2/OData
-  tags:
-  - Open Houses
-  tags_raw:
-  - OpenHouses
-  properties:
-  - type: OpenAPI
-    url: openapi/bridge-mls-openhouses-api-openapi.yml
-  - type: Documentation
-    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
-  - type: Documentation
-    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
-  - type: Documentation
-    url: https://bridgedataoutput.com/docs/explorer/mls-data
-  - type: JSONSchema
-    url: json-schema/bridge-property-schema.json
-  - type: JSONSchema
-    url: json-schema/bridge-member-schema.json
-  - type: JSONLD
-    url: json-ld/bridge-mls-context.jsonld
-  - type: Documentation
-    url: https://bridgedataoutput.com/docs/platform/API/bridge
 - aid: bridge-mls:bridge-mls-property-api
   name: Bridge Property API
   description: RESO Property resource (listings)
@@ -302,6 +276,30 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/bridge-mls-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/reso-web-api
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/explorer/mls-data
+  - type: JSONSchema
+    url: json-schema/bridge-property-schema.json
+  - type: JSONSchema
+    url: json-schema/bridge-member-schema.json
+  - type: JSONLD
+    url: json-ld/bridge-mls-context.jsonld
+  - type: Documentation
+    url: https://bridgedataoutput.com/docs/platform/API/bridge
+- aid: bridge-mls:bridge-mls-open-houses-api
+  name: Bridge Open Houses API
+  description: The Open Houses API from Bridge — 1 operation(s) for open houses.
+  humanURL: https://bridgedataoutput.com/docs/platform/API/webhooks
+  baseURL: https://api.bridgedataoutput.com/api/v2
+  tags:
+  - Open Houses
+  properties:
+  - type: OpenAPI
+    url: openapi/bridge-mls-open-houses-api-openapi.yml
   - type: Documentation
     url: https://bridgedataoutput.com/docs/platform/API/reso-web-api
   - type: Documentation
