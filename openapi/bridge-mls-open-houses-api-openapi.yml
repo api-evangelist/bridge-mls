@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Bridge Web Agents API
+  title: Bridge Web Open Houses API
   version: '2.0'
   description: 'Bridge''s native (non-OData) RESTful Web API. Returns the same RESO-normalized resources as the
 
@@ -16,19 +16,19 @@ servers:
 security:
 - AccessToken: []
 tags:
-- name: Agents
+- name: Open Houses
 paths:
-  /{dataset}/agents:
+  /{dataset}/openhouses:
     get:
       tags:
-      - Agents
-      summary: List Agents
-      operationId: listAgents
+      - Open Houses
+      summary: List Open Houses
+      operationId: listOpenHouses
       parameters:
       - $ref: '#/components/parameters/Dataset'
       responses:
         '200':
-          description: Agent collection
+          description: OpenHouse collection
           content:
             application/json:
               schema:

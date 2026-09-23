@@ -1,34 +1,47 @@
 {
   "provider": "bridge-mls",
   "sources": [
-    "bridge-mls-agents-api-openapi.yml",
-    "bridge-mls-listings-api-openapi.yml",
-    "bridge-mls-media-api-openapi.yml",
-    "bridge-mls-member-api-openapi.yml",
-    "bridge-mls-metadata-api-openapi.yml",
-    "bridge-mls-office-api-openapi.yml",
-    "bridge-mls-offices-api-openapi.yml",
-    "bridge-mls-openhouse-api-openapi.yml",
-    "bridge-mls-openhouses-api-openapi.yml",
-    "bridge-mls-property-api-openapi.yml",
-    "bridge-mls-webhooks-api-openapi.yml"
+    "_original/bridge-reso-web-api-openapi.yml",
+    "_original/bridge-web-api-openapi.yml",
+    "_original/bridge-webhooks-api-openapi.yml"
   ],
   "outputs": [
-    "bridge-mls-agents-api-openapi.yml",
-    "bridge-mls-listings-api-openapi.yml",
     "bridge-mls-media-api-openapi.yml",
     "bridge-mls-member-api-openapi.yml",
     "bridge-mls-metadata-api-openapi.yml",
     "bridge-mls-office-api-openapi.yml",
-    "bridge-mls-offices-api-openapi.yml",
     "bridge-mls-openhouse-api-openapi.yml",
-    "bridge-mls-openhouses-api-openapi.yml",
     "bridge-mls-property-api-openapi.yml",
+    "bridge-mls-agents-api-openapi.yml",
+    "bridge-mls-listings-api-openapi.yml",
+    "bridge-mls-offices-api-openapi.yml",
+    "bridge-mls-openhouses-api-openapi.yml",
     "bridge-mls-webhooks-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bridge-reso-web-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "bridge-web-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "bridge-webhooks-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: bridge-mls-open-houses-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 13 total)"
+  ],
+  "skipped": [
+    "bridge-mls-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bridge-mls-listings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bridge-mls-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bridge-mls-member-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bridge-mls-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bridge-mls-office-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bridge-mls-offices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bridge-mls-open-houses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bridge-mls-openhouse-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bridge-mls-property-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bridge-mls-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
