@@ -45,12 +45,6 @@ paths:
                 type: object
 components:
   parameters:
-    Filter:
-      name: $filter
-      in: query
-      description: OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).
-      schema:
-        type: string
     Skip:
       name: $skip
       in: query
@@ -62,6 +56,18 @@ components:
       in: path
       required: true
       description: MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`).
+      schema:
+        type: string
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return.
+      schema:
+        type: string
+    Filter:
+      name: $filter
+      in: query
+      description: OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).
       schema:
         type: string
     Top:
@@ -76,12 +82,6 @@ components:
       name: $orderby
       in: query
       description: Sort expression (e.g. `ModificationTimestamp desc`).
-      schema:
-        type: string
-    Select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return.
       schema:
         type: string
   securitySchemes:
