@@ -73,72 +73,6 @@ paths:
         '404':
           description: Not found
 components:
-  parameters:
-    Skip:
-      name: $skip
-      in: query
-      description: Number of records to skip.
-      schema:
-        type: integer
-    Count:
-      name: $count
-      in: query
-      description: Include `@odata.count` in the response.
-      schema:
-        type: boolean
-    Dataset:
-      name: dataset
-      in: path
-      required: true
-      description: MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`).
-      schema:
-        type: string
-    MaxPageSize:
-      name: maxpagesize
-      in: header
-      description: Preferred page size (default 10, max 200).
-      schema:
-        type: integer
-        default: 10
-        maximum: 200
-    Expand:
-      name: $expand
-      in: query
-      description: Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand.
-      schema:
-        type: string
-    Select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return.
-      schema:
-        type: string
-    Filter:
-      name: $filter
-      in: query
-      description: OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).
-      schema:
-        type: string
-    Top:
-      name: $top
-      in: query
-      description: Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.
-      schema:
-        type: integer
-        default: 10
-        maximum: 200
-    Unselect:
-      name: unselect
-      in: query
-      description: Bridge extension — comma-separated list of fields to exclude (returns all other fields).
-      schema:
-        type: string
-    OrderBy:
-      name: $orderby
-      in: query
-      description: Sort expression (e.g. `ModificationTimestamp desc`).
-      schema:
-        type: string
   schemas:
     Property:
       type: object
@@ -249,6 +183,72 @@ components:
         ModificationTimestamp:
           type: string
           format: date-time
+  parameters:
+    MaxPageSize:
+      name: maxpagesize
+      in: header
+      description: Preferred page size (default 10, max 200).
+      schema:
+        type: integer
+        default: 10
+        maximum: 200
+    Top:
+      name: $top
+      in: query
+      description: Page size. Bridge interprets `$top` as page size (not total collection size). Default 10, max 200.
+      schema:
+        type: integer
+        default: 10
+        maximum: 200
+    Expand:
+      name: $expand
+      in: query
+      description: Comma-separated list of navigation properties to expand (e.g. `Media,Rooms`). Default max 10 results per expand unless `$top` is specified inside the expand.
+      schema:
+        type: string
+    Filter:
+      name: $filter
+      in: query
+      description: OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).
+      schema:
+        type: string
+    Unselect:
+      name: unselect
+      in: query
+      description: Bridge extension — comma-separated list of fields to exclude (returns all other fields).
+      schema:
+        type: string
+    Skip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
+      schema:
+        type: integer
+    Count:
+      name: $count
+      in: query
+      description: Include `@odata.count` in the response.
+      schema:
+        type: boolean
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return.
+      schema:
+        type: string
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      description: MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`).
+      schema:
+        type: string
+    OrderBy:
+      name: $orderby
+      in: query
+      description: Sort expression (e.g. `ModificationTimestamp desc`).
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

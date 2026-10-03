@@ -55,14 +55,6 @@ paths:
               schema:
                 type: string
 components:
-  parameters:
-    Dataset:
-      name: dataset
-      in: path
-      required: true
-      description: MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`).
-      schema:
-        type: string
   schemas:
     ServiceDocument:
       type: object
@@ -80,6 +72,14 @@ components:
                 type: string
               url:
                 type: string
+  parameters:
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      description: MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`).
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http

@@ -67,25 +67,6 @@ paths:
                 $ref: '#/components/schemas/Member'
 components:
   parameters:
-    OrderBy:
-      name: $orderby
-      in: query
-      description: Sort expression (e.g. `ModificationTimestamp desc`).
-      schema:
-        type: string
-    Skip:
-      name: $skip
-      in: query
-      description: Number of records to skip.
-      schema:
-        type: integer
-    Dataset:
-      name: dataset
-      in: path
-      required: true
-      description: MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`).
-      schema:
-        type: string
     MaxPageSize:
       name: maxpagesize
       in: header
@@ -94,18 +75,6 @@ components:
         type: integer
         default: 10
         maximum: 200
-    Select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return.
-      schema:
-        type: string
-    Filter:
-      name: $filter
-      in: query
-      description: OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).
-      schema:
-        type: string
     Top:
       name: $top
       in: query
@@ -114,7 +83,47 @@ components:
         type: integer
         default: 10
         maximum: 200
+    Filter:
+      name: $filter
+      in: query
+      description: OData filter expression (e.g. `ListPrice gt 500000 and StandardStatus eq 'Active'`).
+      schema:
+        type: string
+    Skip:
+      name: $skip
+      in: query
+      description: Number of records to skip.
+      schema:
+        type: integer
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return.
+      schema:
+        type: string
+    Dataset:
+      name: dataset
+      in: path
+      required: true
+      description: MLS dataset code (e.g. `test`, `actris_ref`, `mlspin`).
+      schema:
+        type: string
+    OrderBy:
+      name: $orderby
+      in: query
+      description: Sort expression (e.g. `ModificationTimestamp desc`).
+      schema:
+        type: string
   schemas:
+    MemberCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
     Member:
       type: object
       properties:
@@ -139,15 +148,6 @@ components:
         ModificationTimestamp:
           type: string
           format: date-time
-    MemberCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Member'
   securitySchemes:
     BearerAuth:
       type: http
