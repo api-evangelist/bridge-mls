@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 apiCommons: plans/0.1
 provider:
   id: bridge-mls
@@ -66,3 +70,35 @@ sources:
 - https://bridgedataoutput.com/docs/platform/Introduction/Signing-up-with-Bridge-API
 - https://bridgedataoutput.com/zgdata
 updated: '2026-05-25'
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units:
+  - object
+  plans:
+  - name: Public Test Dataset
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: MLS-Licensed Data Feed
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - object
+    periods:
+    - other
+  - name: Zillow Group Data License
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - object
+    periods:
+    - other
