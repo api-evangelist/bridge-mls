@@ -11,6 +11,13 @@ tags:
 - RESO
 - Listings
 - Property Data
+- Brokerage
+tags_raw:
+- Real Estate
+- MLS
+- RESO
+- Listings
+- Property Data
 - Brokers
 url: https://raw.githubusercontent.com/api-evangelist/bridge-mls/refs/heads/main/apis.yml
 created: '2026-05-25'
