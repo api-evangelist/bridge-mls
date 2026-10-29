@@ -64,6 +64,40 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-This profile has been **merged into [bridge-interactive](https://apis.io/providers/bridge-interactive/)** — the two records described the same company, and that one is canonical.
+> **Retired — merged into [Bridge Interactive](https://apis.io/providers/bridge-interactive/).** The two records described the same company, and that one is canonical. Nothing in this repository is maintained any more.
 
-Nothing here is maintained any more. The company's current profile, rating and artifacts are at [apis.io/providers/bridge-interactive/](https://apis.io/providers/bridge-interactive/).
+**Why:** Duplicate of bridge-interactive (same Zillow Group platform, api.bridgedataoutput.com). bridge-interactive is canonical: it is the company name and holds the bridgeinteractive.com website. bridge-mls had the richer spec set; its unique contracts were moved into bridge-interactive with x-moved-from: Webhooks (6 operations), the RESO Property, Member and Office specs (they add the by-key lookups), and the doc-only Zillow Group Data API. Media, Metadata and OpenHouse point at the bridge-interactive RESO Web API spec that already covers them; Agents, Listings, Offices and Open Houses map 1:1. bridge-mls stays live as a pointer profile with no APIs. Approved by Kin Lane 2026-10-13.
+
+**Retired:** 2026-10-13
+
+## Where to go now
+
+The current profile, APIs, artifacts and rating for Bridge Interactive are on APIs.io at **[apis.io/providers/bridge-interactive/](https://apis.io/providers/bridge-interactive/)**.
+
+Pages that used to belong to this profile now live at:
+
+- [Bridge Interactive Agentic Access](https://apis.io/agentic-access/bridge-interactive/bridge-interactive-agentic-access/)
+- [Bridge Interactive Agents API](https://apis.io/apis/bridge-interactive/bridge-interactive-agents-api/)
+- [Bridge Interactive Listings API](https://apis.io/apis/bridge-interactive/bridge-interactive-listings-api/)
+- [Bridge Interactive Reso Web API API](https://apis.io/apis/bridge-interactive/bridge-interactive-reso-web-api-api/)
+- [Bridge Interactive Member API](https://apis.io/apis/bridge-interactive/bridge-interactive-member-api/)
+- [Bridge Interactive Office API](https://apis.io/apis/bridge-interactive/bridge-interactive-office-api/)
+- [Bridge Interactive Offices API](https://apis.io/apis/bridge-interactive/bridge-interactive-offices-api/)
+- [Bridge Interactive Open Houses API](https://apis.io/apis/bridge-interactive/bridge-interactive-open-houses-api/)
+- [Bridge Interactive Property API](https://apis.io/apis/bridge-interactive/bridge-interactive-property-api/)
+- [Bridge Interactive Webhooks API](https://apis.io/apis/bridge-interactive/bridge-interactive-webhooks-api/)
+- [Bridge Interactive Zillow Group Data API](https://apis.io/apis/bridge-interactive/bridge-interactive-zillow-group-data-api/)
+- [Open Bridge Interactive Agents API](https://apis.io/collections/bridge-interactive/open-bridge-interactive-agents-api/)
+- [Open Bridge Interactive Listings API](https://apis.io/collections/bridge-interactive/open-bridge-interactive-listings-api/)
+- [Open Bridge Interactive Offices API](https://apis.io/collections/bridge-interactive/open-bridge-interactive-offices-api/)
+- [Open Bridge Interactive Open Houses API](https://apis.io/collections/bridge-interactive/open-bridge-interactive-open-houses-api/)
+- [Bridge Interactive FinOps](https://apis.io/finops/bridge-interactive/bridge-interactive-finops/)
+- [Bridge Interactive Context](https://apis.io/jsonld/bridge-interactive/bridge-interactive-context/)
+- [Bridge Interactive Plans Pricing](https://apis.io/plans/bridge-interactive/bridge-interactive-plans-pricing/)
+- [Bridge Interactive Rate Limits](https://apis.io/rate-limits/bridge-interactive/bridge-interactive-rate-limits/)
+- [Bridge Interactive Authentication](https://apis.io/security/bridge-interactive/bridge-interactive-authentication/)
+- [Bridge Interactive Domain Security](https://apis.io/security/bridge-interactive/bridge-interactive-domain-security/)
+
+## Open an issue
+
+Issues about Bridge Interactive belong on the canonical profile: [open one on api-evangelist/bridge-interactive](https://github.com/api-evangelist/bridge-interactive/issues/new). If you think this merge was a mistake — these were really two companies — say so there or email [info@apievangelist.com](mailto:info@apievangelist.com).
